@@ -1,0 +1,28 @@
+{
+  "releases": [
+   
+    {
+      "version": "2.0",
+      "releaseDate": "2024-10-15",
+      "downloadUrlWindows": "",
+      "downloadUrlLinux": "",
+      "downloadUrlMac": "https://drive.google.com/link-v1.2.0-mac",
+      "features": [
+        "تحسين واجهة المستخدم",
+  
+       "امكانية انشاء سند الطلبت"
+      ]
+    },
+    {
+      "version": "1.0",
+      "releaseDate": "2024-05-01",
+      "downloadUrlWindows": "https://drive.google.com/file/d/1REhhBDhW83J4esrRLHZlzKx1Dcvc9nuR/view?usp=drive_link",
+      "downloadUrlLinux": "https://drive.google.com/file/d/1CUejAsOR1MBggz8Un5dpLe6D3UrQ_0Gw/view?usp=drive_link",
+      "downloadUrlMac": "https://drive.google.com/link-v1.2.0-mac",
+      "features": [
+        "الإصدار الأولي المستقر",
+        "ميزات إدارة المخزون الأساسية"
+      ]
+    }
+  ]
+}
