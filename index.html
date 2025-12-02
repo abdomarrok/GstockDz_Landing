@@ -20,10 +20,11 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.05); 
             transition: transform 0.3s ease; 
             border: 1px solid #e5e7eb;
+            cursor: pointer; /* جعل البطاقة قابلة للنقر */
         }
         .screenshot-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
         
-        /* Modal Styles */
+        /* General Modal Styles (for download and Image) */
         .modal {
             display: none; position: fixed; z-index: 2000; left: 0; top: 0;
             width: 100%; height: 100%; overflow: auto;
@@ -35,6 +36,35 @@
             width: 90%; max-width: 550px; text-align: center; position: relative;
             animation: fadeIn 0.3s;
         }
+        /* Image Modal Specific Styles */
+        #imageModal .modal-content {
+            padding: 0;
+            max-width: 95%; 
+            max-height: 95%;
+            overflow: hidden;
+            background: transparent;
+        }
+        #fullImage {
+            display: block;
+            width: auto;
+            max-width: 100%;
+            height: auto;
+            max-height: 95vh;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+        }
+        #imageModal .close-button {
+            color: #f8f8f8; 
+            background: rgba(0,0,0,0.5); 
+            border-radius: 50%;
+            padding: 5px 12px;
+            font-size: 36px;
+            top: 20px; 
+            left: 20px; 
+            z-index: 2001;
+        }
+
+
         @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
         .close-button { position: absolute; top: 15px; left: 20px; color: #aaa; font-size: 28px; font-weight: bold; cursor: pointer; }
         
@@ -72,7 +102,7 @@
                     <li><a href="#updates" class="text-gray-600 hover:text-blue-600 transition-colors">التحديثات</a></li>
                     <li><a href="#pricing" class="text-gray-600 hover:text-blue-600 transition-colors">الأسعار</a></li>
                     <li><a href="#contact" class="text-gray-600 hover:text-blue-600 transition-colors">اتصل بنا</a></li>
-                    <li><button onclick="openModal()" class="bg-blue-100 text-blue-700 px-4 py-2 rounded-full hover:bg-blue-200 transition-colors">تنزيل</button></li>
+                    <li><button onclick="openDownloadModal()" class="bg-blue-100 text-blue-700 px-4 py-2 rounded-full hover:bg-blue-200 transition-colors">تنزيل</button></li>
                 </ul>
             </nav>
         </div>
@@ -81,7 +111,7 @@
                 <li><a href="#features" class="block py-2 text-gray-600 hover:text-blue-600 font-medium">الميزات</a></li>
                 <li><a href="#screenshots" class="block py-2 text-gray-600 hover:text-blue-600 font-medium">جولة في البرنامج</a></li>
                 <li><a href="#updates" class="block py-2 text-gray-600 hover:text-blue-600 font-medium">التحديثات</a></li>
-                <li><button onclick="openModal()" class="block w-full text-right py-2 text-blue-600 font-bold">تنزيل التطبيق</button></li>
+                <li><button onclick="openDownloadModal()" class="block w-full text-right py-2 text-blue-600 font-bold">تنزيل التطبيق</button></li>
             </ul>
         </nav>
     </header>
@@ -99,7 +129,7 @@
                 GstockDZ: صُمم خصيصاً للمؤسسات العمومية لضبط حركة السلع اليومية، متابعة سندات الطلب، وتبسيط عملية الجرد السنوي.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <button onclick="openModal()" class="bg-white text-blue-700 font-bold py-4 px-8 rounded-full text-lg shadow-lg hover:bg-gray-50 transform hover:scale-105 transition-all">
+                <button onclick="openDownloadModal()" class="bg-white text-blue-700 font-bold py-4 px-8 rounded-full text-lg shadow-lg hover:bg-gray-50 transform hover:scale-105 transition-all">
                     <i class="fas fa-download ml-2"></i> تحميل النسخة التجريبية
                 </button>
             </div>
@@ -158,27 +188,27 @@
             <h3 class="text-3xl md:text-4xl font-bold mb-12 text-gray-800">نظرة شاملة على النظام</h3>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 
-                <div class="screenshot-card p-2 bg-white rounded-xl">
+                <div class="screenshot-card p-2 bg-white rounded-xl" onclick="openImageModal('img/orders_list.png')">
                     <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                        <img src="img/orders_list.png" alt="سندات الطلب" class="w-full h-48 object-cover object-top hover:scale-110 transition-transform duration-500">
+                        <img src="img/orders_list.png" alt="سندات الطلب" class="w-full h-48 object-cover object-top transition-transform duration-500">
                     </div>
-                    <h4 class="font-bold text-lg text-gray-800 mb-2">قسم المشتريات</h4>
+                    <h4 class="font-bold text-lg text-gray-800 mb-2">قسم المشتريات (سندات الطلب)</h4>
                     <p class="text-sm text-gray-500 px-4 pb-4">متابعة دقيقة لسندات الطلب والمبالغ المالية والآجال.</p>
                 </div>
 
-                <div class="screenshot-card p-2 bg-white rounded-xl">
+                <div class="screenshot-card p-2 bg-white rounded-xl" onclick="openImageModal('img/orders_list.png')">
                     <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                        <img src="img/inventory_list.png" alt="قائمة الجرد" class="w-full h-48 object-cover object-top hover:scale-110 transition-transform duration-500">
+                        <img src="img/inventory_list.png" alt="قائمة إدارة الجرد" class="w-full h-48 object-cover object-top transition-transform duration-500">
                     </div>
                     <h4 class="font-bold text-lg text-gray-800 mb-2">إدارة الأصول والجرد</h4>
                     <p class="text-sm text-gray-500 px-4 pb-4">قاعدة بيانات للأصول الثابتة مع تحديد مواقعها وحالتها.</p>
                 </div>
 
-                <div class="screenshot-card p-2 bg-white rounded-xl">
+                <div class="screenshot-card p-2 bg-white rounded-xl" onclick="openImageModal('img/orders_list.png')">
                     <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                        <img src="img/barcode_print.png" alt="طباعة الباركود" class="w-full h-48 object-cover object-top hover:scale-110 transition-transform duration-500">
+                        <img src="img/barcode_print.png" alt="طباعة الباركود" class="w-full h-48 object-cover object-top transition-transform duration-500">
                     </div>
-                    <h4 class="font-bold text-lg text-gray-800 mb-2">تقنيات حديثة</h4>
+                    <h4 class="font-bold text-lg text-gray-800 mb-2">تقنيات حديثة (الباركود)</h4>
                     <p class="text-sm text-gray-500 px-4 pb-4">دعم كامل للباركود لتسريع عمليات الإدخال، الإخراج، والجرد.</p>
                 </div>
 
@@ -226,7 +256,7 @@
                         <li class="flex items-center"><i class="fas fa-check text-green-500 ml-2"></i> إنشاء سندات الطلب (تجريبي)</li>
                     </ul>
                     <button class="w-full py-3 rounded-xl border-2 border-blue-600 text-blue-600 font-bold hover:bg-blue-50" 
-                    onclick="openModal()">تحميل الآن</button>
+                    onclick="openDownloadModal()">تحميل الآن</button>
                 </div>
                 <div class="w-full max-w-sm bg-gradient-to-br from-blue-700 to-blue-500 rounded-2xl shadow-2xl p-8 text-white transform md:-translate-y-4">
                     <h4 class="text-2xl font-bold mb-2">النسخة الاحترافية (PRO)</h4>
@@ -274,7 +304,7 @@
 
     <div id="downloadModal" class="modal">
         <div class="modal-content">
-            <span class="close-button" aria-label="إغلاق">&times;</span>
+            <span class="close-button" onclick="closeDownloadModal()" aria-label="إغلاق">&times;</span>
             <div class="mb-6 text-blue-600 text-5xl"><i class="fas fa-cloud-download-alt"></i></div>
             <h4 class="text-2xl font-bold mb-2 text-gray-800">تنزيل GstockDZ</h4>
             <p class="text-gray-600 mb-6">اختر الإصدار ونظام التشغيل المناسب لك:</p>
@@ -283,7 +313,14 @@
                 <div class="text-center text-gray-500 py-4">جاري تحميل الإصدارات المتاحة...</div>
             </div>
 
-            <button onclick="closeModal()" class="text-gray-500 hover:text-gray-800 font-semibold mt-6 text-sm underline">إغلاق</button>
+            <button onclick="closeDownloadModal()" class="text-gray-500 hover:text-gray-800 font-semibold mt-6 text-sm underline">إغلاق</button>
+        </div>
+    </div>
+    
+    <div id="imageModal" class="modal" onclick="closeImageModal(event)">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeImageModal(event)" aria-label="إغلاق">&times;</span>
+            <img id="fullImage" src="" alt="صورة مكبرة لواجهة البرنامج">
         </div>
     </div>
 
@@ -294,23 +331,80 @@
         document.getElementById('mobile-menu-button').addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
         mobileMenu.querySelectorAll('button, a').forEach(l => l.addEventListener('click', () => mobileMenu.classList.add('hidden')));
 
-        // Modal Logic
-        const modal = document.getElementById("downloadModal");
-        const span = document.getElementsByClassName("close-button")[0];
-        function openModal() { modal.style.display = "flex"; document.body.style.overflow = "hidden"; }
-        function closeModal() { modal.style.display = "none"; document.body.style.overflow = "auto"; }
-        span.onclick = closeModal;
-        window.onclick = function(event) { if (event.target == modal) closeModal(); }
+        // ==========================================
+        // DOWNLOAD MODAL Logic
+        // ==========================================
+        const downloadModal = document.getElementById("downloadModal");
+        const downloadCloseBtn = downloadModal.querySelector(".close-button");
+        
+        function openDownloadModal() { 
+            downloadModal.style.display = "flex"; 
+            document.body.style.overflow = "hidden"; // منع التمرير في الخلفية 
+        }
+        function closeDownloadModal() { 
+            downloadModal.style.display = "none"; 
+            document.body.style.overflow = "auto";
+        }
+        downloadCloseBtn.onclick = closeDownloadModal;
 
         // ==========================================
-        // VERSION CONTROL SYSTEM
+        // IMAGE MODAL Logic
+        // ==========================================
+        const imageModal = document.getElementById("imageModal");
+        const fullImage = document.getElementById("fullImage");
+
+        function openImageModal(imageSrc) {
+            fullImage.src = imageSrc;
+            imageModal.style.display = "flex";
+            document.body.style.overflow = "hidden"; // منع التمرير في الخلفية
+        }
+
+        function closeImageModal(event) {
+            // للتأكد من أن النقر على الخلفية أو زر الإغلاق فقط هو ما يغلق النافذة
+            if (event.target === imageModal || event.target.className.includes('close-button')) {
+                imageModal.style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+        }
+        
+
+        // ==========================================
+        // VERSION CONTROL SYSTEM (Mock Data)
         // ==========================================
         async function checkVersion() {
-            try {
-                const response = await fetch('versions.json?t=' + new Date().getTime());
-                if (!response.ok) throw new Error("Could not fetch version info");
+            // محاكاة لملف versions.json
+            const mockData = {
+                releases: [
+                    {
+                        version: "2.1.0",
+                        releaseDate: "2025-11-28",
+                        features: [
+                            "إضافة وحدة طباعة الباركود الجماعية.",
+                            "تحسين واجهة المستخدم لإدارة الأصول الثابتة.",
+                            "إصلاحات أمنية وتحسينات على أداء قاعدة البيانات."
+                        ],
+                        downloadUrlWindows: "#",
+                        downloadUrlLinux: "#",
+                        downloadUrlMac: "#"
+                    },
+                    {
+                        version: "2.0.0",
+                        releaseDate: "2025-09-15",
+                        features: [
+                            "الإطلاق الرسمي لوحدة الجرد السنوي.",
+                            "دعم العمل الشبكي (Multi-User) بالكامل."
+                        ],
+                        downloadUrlWindows: "#",
+                        downloadUrlLinux: "#",
+                        downloadUrlMac: "#"
+                    }
+                ]
+            };
 
-                const data = await response.json();
+
+            try {
+                // بدلاً من Fetch، نستخدم البيانات الوهمية مباشرة
+                const data = mockData;
                 const releases = data.releases;
 
                 if (!releases || releases.length === 0) throw new Error("No releases found.");
