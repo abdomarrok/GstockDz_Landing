@@ -12,19 +12,33 @@
     <style>
         html { scroll-behavior: smooth; }
         body { font-family: 'Cairo', sans-serif; background-color: #f8f9fa; color: #333; }
-        .gradient-bg { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); /* غيرت اللون للأزرق الرسمي أكثر للمؤسسات */ }
+        .gradient-bg { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); }
         .btn-primary { background-color: #2563eb; transition: all 0.3s ease; }
         .btn-primary:hover { background-color: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); }
         .feature-icon { color: #2563eb; }
+
+        /* تعديلات الـ Slider */
+        #screenshots-container {
+            /* إخفاء شريط التمرير الافتراضي */
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+            scroll-behavior: smooth; /* لتحريك سلس */
+        }
+        #screenshots-container::-webkit-scrollbar {
+            display: none; /* Chrome, Safari and Opera */
+        }
         .screenshot-card { 
+            /* جعل البطاقة بعرض ثابت وعدم السماح لها بالانكماش */
             box-shadow: 0 10px 20px rgba(0,0,0,0.05); 
             transition: transform 0.3s ease; 
             border: 1px solid #e5e7eb;
-            cursor: pointer; /* جعل البطاقة قابلة للنقر */
+            cursor: pointer;
+            width: 300px; /* عرض ثابت لكل صورة */
+            flex-shrink: 0; /* منع البطاقات من الانكماش */
         }
         .screenshot-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
         
-        /* General Modal Styles (for download and Image) */
+        /* Modal Styles */
         .modal {
             display: none; position: fixed; z-index: 2000; left: 0; top: 0;
             width: 100%; height: 100%; overflow: auto;
@@ -36,49 +50,21 @@
             width: 90%; max-width: 550px; text-align: center; position: relative;
             animation: fadeIn 0.3s;
         }
-        /* Image Modal Specific Styles */
-        #imageModal .modal-content {
-            padding: 0;
-            max-width: 95%; 
-            max-height: 95%;
-            overflow: hidden;
-            background: transparent;
-        }
-        #fullImage {
-            display: block;
-            width: auto;
-            max-width: 100%;
-            height: auto;
-            max-height: 95vh;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-        }
+        #imageModal .modal-content { padding: 0; max-width: 95%; max-height: 95%; overflow: hidden; background: transparent; }
+        #fullImage { display: block; width: auto; max-width: 100%; height: auto; max-height: 95vh; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.5); }
         #imageModal .close-button {
-            color: #f8f8f8; 
-            background: rgba(0,0,0,0.5); 
-            border-radius: 50%;
-            padding: 5px 12px;
-            font-size: 36px;
-            top: 20px; 
-            left: 20px; 
-            z-index: 2001;
+            color: #f8f8f8; background: rgba(0,0,0,0.5); border-radius: 50%;
+            padding: 5px 12px; font-size: 36px; top: 20px; left: 20px; z-index: 2001;
         }
-
-
         @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
         .close-button { position: absolute; top: 15px; left: 20px; color: #aaa; font-size: 28px; font-weight: bold; cursor: pointer; }
         
         .download-option-card {
-            background-color: #f3f4f6;
-            padding: 15px;
-            border-radius: 12px;
-            border: 2px solid transparent;
-            text-align: right;
-            transition: all 0.2s ease;
+            background-color: #f3f4f6; padding: 15px; border-radius: 12px;
+            border: 2px solid transparent; text-align: right; transition: all 0.2s ease;
         }
         .download-option-card:hover {
-            border-color: #2563eb;
-            background-color: #eff6ff;
+            border-color: #2563eb; background-color: #eff6ff;
         }
     </style>
 </head>
@@ -184,35 +170,54 @@
     </section>
 
     <section id="screenshots" class="py-20 px-4 bg-gray-50">
-        <div class="container mx-auto text-center">
-            <h3 class="text-3xl md:text-4xl font-bold mb-12 text-gray-800">نظرة شاملة على النظام</h3>
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                
-                <div class="screenshot-card p-2 bg-white rounded-xl" onclick="openImageModal('img/orders_list.png')">
-                    <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                        <img src="img/orders_list.png" alt="سندات الطلب" class="w-full h-48 object-cover object-top transition-transform duration-500">
-                    </div>
-                    <h4 class="font-bold text-lg text-gray-800 mb-2">قسم المشتريات (سندات الطلب)</h4>
-                    <p class="text-sm text-gray-500 px-4 pb-4">متابعة دقيقة لسندات الطلب والمبالغ المالية والآجال.</p>
-                </div>
+        <div class="container mx-auto text-center relative">
+            <h3 class="text-3xl md:text-4xl font-bold mb-12 text-gray-800">جولة في البرنامج</h3>
+            
+            <div class="relative max-w-6xl mx-auto">
+                <button onclick="scrollScreenshots(-1)" class="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white p-3 rounded-full shadow-lg text-blue-600 hover:bg-gray-100 transition duration-300 hidden md:block">
+                    <i class="fas fa-chevron-left text-xl"></i>
+                </button>
+                <button onclick="scrollScreenshots(1)" class="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white p-3 rounded-full shadow-lg text-blue-600 hover:bg-gray-100 transition duration-300 hidden md:block">
+                    <i class="fas fa-chevron-right text-xl"></i>
+                </button>
 
-                <div class="screenshot-card p-2 bg-white rounded-xl" onclick="openImageModal('img/orders_list.png')">
-                    <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                        <img src="img/inventory_list.png" alt="قائمة إدارة الجرد" class="w-full h-48 object-cover object-top transition-transform duration-500">
+                <div id="screenshots-container" class="flex overflow-x-scroll snap-x snap-mandatory space-x-4 space-x-reverse pb-4">
+                    
+                    <div class="screenshot-card p-2 bg-white rounded-xl snap-start" onclick="openImageModal('img/orders_list.png')">
+                        <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
+                            <img src="img/orders_list.png" alt="سندات الطلب" class="w-full h-48 object-cover object-top transition-transform duration-500">
+                        </div>
+                        <h4 class="font-bold text-lg text-gray-800 mb-2">قسم المشتريات (سندات الطلب)</h4>
+                        <p class="text-sm text-gray-500 px-4 pb-4">متابعة دقيقة لسندات الطلب والمبالغ المالية والآجال.</p>
                     </div>
-                    <h4 class="font-bold text-lg text-gray-800 mb-2">إدارة الأصول والجرد</h4>
-                    <p class="text-sm text-gray-500 px-4 pb-4">قاعدة بيانات للأصول الثابتة مع تحديد مواقعها وحالتها.</p>
-                </div>
 
-                <div class="screenshot-card p-2 bg-white rounded-xl" onclick="openImageModal('img/orders_list.png')">
-                    <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                        <img src="img/barcode_print.png" alt="طباعة الباركود" class="w-full h-48 object-cover object-top transition-transform duration-500">
+                    <div class="screenshot-card p-2 bg-white rounded-xl snap-start" onclick="openImageModal('img/inventory_list.png')">
+                        <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
+                            <img src="img/inventory_list.png" alt="قائمة إدارة الجرد" class="w-full h-48 object-cover object-top transition-transform duration-500">
+                        </div>
+                        <h4 class="font-bold text-lg text-gray-800 mb-2">إدارة الأصول والجرد</h4>
+                        <p class="text-sm text-gray-500 px-4 pb-4">قاعدة بيانات للأصول الثابتة مع تحديد مواقعها وحالتها.</p>
                     </div>
-                    <h4 class="font-bold text-lg text-gray-800 mb-2">تقنيات حديثة (الباركود)</h4>
-                    <p class="text-sm text-gray-500 px-4 pb-4">دعم كامل للباركود لتسريع عمليات الإدخال، الإخراج، والجرد.</p>
-                </div>
 
-            </div>
+                    <div class="screenshot-card p-2 bg-white rounded-xl snap-start" onclick="openImageModal('img/barcode_print.png')">
+                        <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
+                            <img src="img/barcode_print.png" alt="طباعة الباركود" class="w-full h-48 object-cover object-top transition-transform duration-500">
+                        </div>
+                        <h4 class="font-bold text-lg text-gray-800 mb-2">تقنيات حديثة (الباركود)</h4>
+                        <p class="text-sm text-gray-500 px-4 pb-4">دعم كامل للباركود لتسريع عمليات الإدخال، الإخراج، والجرد.</p>
+                    </div>
+
+                    <div class="screenshot-card p-2 bg-white rounded-xl snap-start" onclick="openImageModal('img/dashboard.png')">
+                        <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
+                            <img src="img/dashboard.png" alt="لوحة التحكم" class="w-full h-48 object-cover object-top transition-transform duration-500">
+                        </div>
+                        <h4 class="font-bold text-lg text-gray-800 mb-2">لوحة التحكم الرئيسية</h4>
+                        <p class="text-sm text-gray-500 px-4 pb-4">نظرة عامة سريعة على المخزون والحركات المالية.</p>
+                    </div>
+
+                </div>
+                </div>
+        
         </div>
     </section>
 
@@ -332,6 +337,28 @@
         mobileMenu.querySelectorAll('button, a').forEach(l => l.addEventListener('click', () => mobileMenu.classList.add('hidden')));
 
         // ==========================================
+        // SLIDER Logic (جديد)
+        // ==========================================
+        const screenshotsContainer = document.getElementById('screenshots-container');
+        
+        function scrollScreenshots(direction) {
+            // تحديد مسافة التمرير بناءً على اتجاه RTL
+            // في اتجاه RTL، التمرير لليمين يكون بقيمة سالبة، واليسار بقيمة موجبة
+            const scrollAmount = 350; // مقدار التمرير بالبكسل
+            
+            // بما أن الاتجاه هو RTL، فإن اليسار (Left) هو اتجاه الزيادة
+            // 1: لليسار (Next) -> زيادة الـ scrollLeft
+            // -1: لليمين (Previous) -> إنقاص الـ scrollLeft
+            
+            // يتم استخدام القيمة السالبة لـ scrollLeft ليعمل بشكل صحيح في المتصفحات التي تدعم RTL
+            if (direction === 1) { // التمرير إلى اليسار (الصورة التالية)
+                screenshotsContainer.scrollLeft += scrollAmount;
+            } else if (direction === -1) { // التمرير إلى اليمين (الصورة السابقة)
+                screenshotsContainer.scrollLeft -= scrollAmount;
+            }
+        }
+        
+        // ==========================================
         // DOWNLOAD MODAL Logic
         // ==========================================
         const downloadModal = document.getElementById("downloadModal");
@@ -339,7 +366,7 @@
         
         function openDownloadModal() { 
             downloadModal.style.display = "flex"; 
-            document.body.style.overflow = "hidden"; // منع التمرير في الخلفية 
+            document.body.style.overflow = "hidden";
         }
         function closeDownloadModal() { 
             downloadModal.style.display = "none"; 
@@ -356,23 +383,20 @@
         function openImageModal(imageSrc) {
             fullImage.src = imageSrc;
             imageModal.style.display = "flex";
-            document.body.style.overflow = "hidden"; // منع التمرير في الخلفية
+            document.body.style.overflow = "hidden";
         }
 
         function closeImageModal(event) {
-            // للتأكد من أن النقر على الخلفية أو زر الإغلاق فقط هو ما يغلق النافذة
             if (event.target === imageModal || event.target.className.includes('close-button')) {
                 imageModal.style.display = "none";
                 document.body.style.overflow = "auto";
             }
         }
         
-
         // ==========================================
         // VERSION CONTROL SYSTEM (Mock Data)
         // ==========================================
         async function checkVersion() {
-            // محاكاة لملف versions.json
             const mockData = {
                 releases: [
                     {
@@ -401,9 +425,7 @@
                 ]
             };
 
-
             try {
-                // بدلاً من Fetch، نستخدم البيانات الوهمية مباشرة
                 const data = mockData;
                 const releases = data.releases;
 
