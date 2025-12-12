@@ -1,126 +1,239 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="GstockDZ - الحل الشامل لتسيير المخزون، المشتريات، والجرد للمؤسسات الخاصة والعموميةالعمومية في الجزائر.">
+    <meta name="description"
+        content="GstockDZ - الحل الشامل لتسيير المخزون، المشتريات، والجرد للمؤسسات الخاصة والعموميةالعمومية في الجزائر.">
     <title>GstockDZ - نظام التسيير المخزني المتكامل</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <style>
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Cairo', sans-serif; background-color: #f8f9fa; color: #333; }
-        .gradient-bg { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); }
-        .btn-primary { background-color: #2563eb; transition: all 0.3s ease; }
-        .btn-primary:hover { background-color: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); }
-        .feature-icon { color: #2563eb; }
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        }
+
+        .btn-primary {
+            background-color: #2563eb;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .feature-icon {
+            color: #2563eb;
+        }
 
         /* تعديلات الـ Slider */
         #screenshots-container {
             /* إخفاء شريط التمرير الافتراضي */
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
-            scroll-behavior: smooth; /* لتحريك سلس */
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
+            scroll-behavior: smooth;
+            /* لتحريك سلس */
         }
+
         #screenshots-container::-webkit-scrollbar {
-            display: none; /* Chrome, Safari and Opera */
+            display: none;
+            /* Chrome, Safari and Opera */
         }
-        .screenshot-card { 
+
+        .screenshot-card {
             /* جعل البطاقة بعرض ثابت وعدم السماح لها بالانكماش */
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05); 
-            transition: transform 0.3s ease; 
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
             border: 1px solid #e5e7eb;
             cursor: pointer;
-            width: 300px; /* عرض ثابت لكل صورة */
-            flex-shrink: 0; /* منع البطاقات من الانكماش */
+            width: 300px;
+            /* عرض ثابت لكل صورة */
+            flex-shrink: 0;
+            /* منع البطاقات من الانكماش */
         }
-        .screenshot-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        
+
+        .screenshot-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
         /* Modal Styles */
         .modal {
-            display: none; position: fixed; z-index: 2000; left: 0; top: 0;
-            width: 100%; height: 100%; overflow: auto;
-            background-color: rgba(0,0,0,0.7); backdrop-filter: blur(5px);
-            justify-content: center; align-items: center;
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
         }
+
         .modal-content {
-            background-color: #fff; margin: auto; padding: 30px; border-radius: 20px;
-            width: 90%; max-width: 550px; text-align: center; position: relative;
+            background-color: #fff;
+            margin: auto;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 550px;
+            text-align: center;
+            position: relative;
             animation: fadeIn 0.3s;
         }
-        #imageModal .modal-content { padding: 0; max-width: 95%; max-height: 95%; overflow: hidden; background: transparent; }
-        #fullImage { display: block; width: auto; max-width: 100%; height: auto; max-height: 95vh; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.5); }
+
+        #imageModal .modal-content {
+            padding: 0;
+            max-width: 95%;
+            max-height: 95%;
+            overflow: hidden;
+            background: transparent;
+        }
+
+        #fullImage {
+            display: block;
+            width: auto;
+            max-width: 100%;
+            height: auto;
+            max-height: 95vh;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+
         #imageModal .close-button {
-            color: #f8f8f8; background: rgba(0,0,0,0.5); border-radius: 50%;
-            padding: 5px 12px; font-size: 36px; top: 20px; left: 20px; z-index: 2001;
+            color: #f8f8f8;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            padding: 5px 12px;
+            font-size: 36px;
+            top: 20px;
+            left: 20px;
+            z-index: 2001;
         }
-        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-        .close-button { position: absolute; top: 15px; left: 20px; color: #aaa; font-size: 28px; font-weight: bold; cursor: pointer; }
-        
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
         .download-option-card {
-            background-color: #f3f4f6; padding: 15px; border-radius: 12px;
-            border: 2px solid transparent; text-align: right; transition: all 0.2s ease;
+            background-color: #f3f4f6;
+            padding: 15px;
+            border-radius: 12px;
+            border: 2px solid transparent;
+            text-align: right;
+            transition: all 0.2s ease;
         }
+
         .download-option-card:hover {
-            border-color: #2563eb; background-color: #eff6ff;
+            border-color: #2563eb;
+            background-color: #eff6ff;
         }
     </style>
 </head>
+
 <body class="text-right flex flex-col min-h-screen">
 
     <header class="bg-white/90 backdrop-blur-md sticky top-0 z-50 shadow-sm border-b border-gray-100">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center flex-row-reverse">
             <div class="flex items-center gap-2 flex-row-reverse">
                 <i class="fas fa-layer-group text-blue-700 text-2xl"></i>
-                <h1 class="text-2xl font-bold text-gray-800 tracking-tight">Gstock<span 
-                    class="text-blue-600">DZ</span></h1>
+                <h1 class="text-2xl font-bold text-gray-800 tracking-tight">Gstock<span class="text-blue-600">DZ</span>
+                </h1>
             </div>
-            
+
             <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-blue-600 focus:outline-none">
                 <i class="fas fa-bars text-2xl"></i>
             </button>
             <nav class="hidden md:block">
                 <ul class="flex space-x-6 space-x-reverse font-semibold">
                     <li><a href="#features" class="text-gray-600 hover:text-blue-600 transition-colors">الميزات</a></li>
-                    <li><a href="#screenshots" class="text-gray-600 hover:text-blue-600 transition-colors">جولة في البرنامج</a></li>
-                    <li><a href="#updates" class="text-gray-600 hover:text-blue-600 transition-colors">التحديثات</a></li>
+                    <li><a href="#screenshots" class="text-gray-600 hover:text-blue-600 transition-colors">جولة في
+                            البرنامج</a></li>
+                    <li><a href="#updates" class="text-gray-600 hover:text-blue-600 transition-colors">التحديثات</a>
+                    </li>
                     <li><a href="#pricing" class="text-gray-600 hover:text-blue-600 transition-colors">الأسعار</a></li>
                     <li><a href="#contact" class="text-gray-600 hover:text-blue-600 transition-colors">اتصل بنا</a></li>
-                    <li><button onclick="openDownloadModal()" class="bg-blue-100 text-blue-700 px-4 py-2 rounded-full hover:bg-blue-200 transition-colors">تنزيل</button></li>
+                    <li><button onclick="openDownloadModal()"
+                            class="bg-blue-100 text-blue-700 px-4 py-2 rounded-full hover:bg-blue-200 transition-colors">تنزيل</button>
+                    </li>
                 </ul>
             </nav>
         </div>
         <nav id="mobile-menu" class="hidden md:hidden bg-white border-t">
             <ul class="flex flex-col p-4 space-y-3">
-                <li><a href="#features" class="block py-2 text-gray-600 hover:text-blue-600 font-medium">الميزات</a></li>
-                <li><a href="#screenshots" class="block py-2 text-gray-600 hover:text-blue-600 font-medium">جولة في البرنامج</a></li>
-                <li><a href="#updates" class="block py-2 text-gray-600 hover:text-blue-600 font-medium">التحديثات</a></li>
-                <li><button onclick="openDownloadModal()" class="block w-full text-right py-2 text-blue-600 font-bold">تنزيل التطبيق</button></li>
+                <li><a href="#features" class="block py-2 text-gray-600 hover:text-blue-600 font-medium">الميزات</a>
+                </li>
+                <li><a href="#screenshots" class="block py-2 text-gray-600 hover:text-blue-600 font-medium">جولة في
+                        البرنامج</a></li>
+                <li><a href="#updates" class="block py-2 text-gray-600 hover:text-blue-600 font-medium">التحديثات</a>
+                </li>
+                <li><button onclick="openDownloadModal()"
+                        class="block w-full text-right py-2 text-blue-600 font-bold">تنزيل التطبيق</button></li>
             </ul>
         </nav>
     </header>
 
     <section class="gradient-bg text-white pt-20 pb-24 px-4 rounded-b-[3rem] relative overflow-hidden">
         <div class="container mx-auto text-center relative z-10">
-            <span id="heroVersionBadge" 
-            class="inline-block bg-white/20 backdrop-blur-sm px-4 py-1 rounded-full text-sm font-semibold mb-6 border border-white/30">
-            الإصدار الاحترافي v2.0</span>
-            
+            <span id="heroVersionBadge"
+                class="inline-block bg-white/20 backdrop-blur-sm px-4 py-1 rounded-full text-sm font-semibold mb-6 border border-white/30">
+                الإصدار الاحترافي v2.0</span>
+
             <h2 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
                 منظومة رقمية شاملة لتسيير <br class="hidden sm:inline"> المخزون، المشتريات، والجرد
             </h2>
             <p class="text-lg md:text-2xl mb-10 opacity-90 max-w-3xl mx-auto font-light">
-                GstockDZ: صُمم خصيصاً للمؤسسات العمومية لضبط حركة السلع اليومية، متابعة سندات الطلب، وتبسيط عملية الجرد السنوي.
+                GstockDZ: صُمم خصيصاً للمؤسسات العمومية لضبط حركة السلع اليومية، متابعة سندات الطلب، وتبسيط عملية الجرد
+                السنوي.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <button onclick="openDownloadModal()" class="bg-white text-blue-700 font-bold py-4 px-8 rounded-full text-lg shadow-lg hover:bg-gray-50 transform hover:scale-105 transition-all">
+                <button onclick="openDownloadModal()"
+                    class="bg-white text-blue-700 font-bold py-4 px-8 rounded-full text-lg shadow-lg hover:bg-gray-50 transform hover:scale-105 transition-all">
                     <i class="fas fa-download ml-2"></i> تحميل النسخة التجريبية
                 </button>
             </div>
             <div class="mt-16 -mb-48">
-                <img src="img/dashboard.png" alt="واجهة برنامج GstockDZ" class="mx-auto rounded-xl shadow-2xl border-8 border-white/20 w-full h-auto" style="max-width: 900px;">
+                <img src="img/dashboard.png" alt="واجهة برنامج GstockDZ"
+                    class="mx-auto rounded-xl shadow-2xl border-8 border-white/20 w-full h-auto"
+                    style="max-width: 900px;">
             </div>
         </div>
     </section>
@@ -129,38 +242,46 @@
         <div class="container mx-auto text-center">
             <h3 class="text-3xl md:text-4xl font-bold mb-12 text-gray-800">الحل الأمثل للتسيير الإداري</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <div class="p-8 rounded-2xl shadow-sm border border-gray-100 bg-white hover:shadow-xl transition-shadow">
+
+                <div
+                    class="p-8 rounded-2xl shadow-sm border border-gray-100 bg-white hover:shadow-xl transition-shadow">
                     <div class="feature-icon text-5xl mb-6"><i class="fas fa-boxes"></i></div>
                     <h4 class="text-xl font-bold mb-3">حركات المخزون اليومية</h4>
-                    <p class="text-gray-600">تسجيل وضبط دقيق لجميع عمليات الإدخال (Entrées) والإخراج (Sorties) بشكل فوري.</p>
+                    <p class="text-gray-600">تسجيل وضبط دقيق لجميع عمليات الإدخال (Entrées) والإخراج (Sorties) بشكل
+                        فوري.</p>
                 </div>
 
-                <div class="p-8 rounded-2xl shadow-sm border border-gray-100 bg-white hover:shadow-xl transition-shadow">
+                <div
+                    class="p-8 rounded-2xl shadow-sm border border-gray-100 bg-white hover:shadow-xl transition-shadow">
                     <div class="feature-icon text-5xl mb-6"><i class="fas fa-file-contract"></i></div>
                     <h4 class="text-xl font-bold mb-3">تسيير المشتريات والطلبات</h4>
                     <p class="text-gray-600">إنشاء ومتابعة سندات الطلب (Bons de Commande) وإدارة ملفات الموردين.</p>
                 </div>
 
-                <div class="p-8 rounded-2xl shadow-sm border border-gray-100 bg-white hover:shadow-xl transition-shadow">
+                <div
+                    class="p-8 rounded-2xl shadow-sm border border-gray-100 bg-white hover:shadow-xl transition-shadow">
                     <div class="feature-icon text-5xl mb-6"><i class="fas fa-barcode"></i></div>
                     <h4 class="text-xl font-bold mb-3">الجرد السنوي الذكي</h4>
-                    <p class="text-gray-600">وحدة متخصصة لتسهيل الجرد السنوي وطباعة ملصقات الباركود وتحديد مواقع الأصول.</p>
+                    <p class="text-gray-600">وحدة متخصصة لتسهيل الجرد السنوي وطباعة ملصقات الباركود وتحديد مواقع الأصول.
+                    </p>
                 </div>
 
-                <div class="p-8 rounded-2xl shadow-sm border border-gray-100 bg-white hover:shadow-xl transition-shadow">
+                <div
+                    class="p-8 rounded-2xl shadow-sm border border-gray-100 bg-white hover:shadow-xl transition-shadow">
                     <div class="feature-icon text-5xl mb-6"><i class="fas fa-chart-pie"></i></div>
                     <h4 class="text-xl font-bold mb-3">تقارير وإحصائيات</h4>
                     <p class="text-gray-600">لوحات تحكم بيانية وتقارير مفصلة حول حالة المخزون واستهلاك المصالح.</p>
                 </div>
 
-                <div class="p-8 rounded-2xl shadow-sm border border-gray-100 bg-white hover:shadow-xl transition-shadow">
+                <div
+                    class="p-8 rounded-2xl shadow-sm border border-gray-100 bg-white hover:shadow-xl transition-shadow">
                     <div class="feature-icon text-5xl mb-6"><i class="fas fa-network-wired"></i></div>
                     <h4 class="text-xl font-bold mb-3">عمل شبكي آمن</h4>
                     <p class="text-gray-600">نظام متعدد المستخدمين بصلاحيات محددة يعمل عبر الشبكة المحلية.</p>
                 </div>
 
-                <div class="p-8 rounded-2xl shadow-sm border border-gray-100 bg-white hover:shadow-xl transition-shadow">
+                <div
+                    class="p-8 rounded-2xl shadow-sm border border-gray-100 bg-white hover:shadow-xl transition-shadow">
                     <div class="feature-icon text-5xl mb-6"><i class="fab fa-java"></i></div>
                     <h4 class="text-xl font-bold mb-3">استقرار وتوافق</h4>
                     <p class="text-gray-600">تطبيق سطح مكتب قوي يعمل على جميع الأنظمة (Windows, Linux, macOS).</p>
@@ -172,52 +293,66 @@
     <section id="screenshots" class="py-20 px-4 bg-gray-50">
         <div class="container mx-auto text-center relative">
             <h3 class="text-3xl md:text-4xl font-bold mb-12 text-gray-800">جولة في البرنامج</h3>
-            
+
             <div class="relative max-w-6xl mx-auto">
-                <button onclick="scrollScreenshots(-1)" class="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white p-3 rounded-full shadow-lg text-blue-600 hover:bg-gray-100 transition duration-300 hidden md:block">
+                <button onclick="scrollScreenshots(-1)"
+                    class="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white p-3 rounded-full shadow-lg text-blue-600 hover:bg-gray-100 transition duration-300 hidden md:block">
                     <i class="fas fa-chevron-left text-xl"></i>
                 </button>
-                <button onclick="scrollScreenshots(1)" class="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white p-3 rounded-full shadow-lg text-blue-600 hover:bg-gray-100 transition duration-300 hidden md:block">
+                <button onclick="scrollScreenshots(1)"
+                    class="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white p-3 rounded-full shadow-lg text-blue-600 hover:bg-gray-100 transition duration-300 hidden md:block">
                     <i class="fas fa-chevron-right text-xl"></i>
                 </button>
 
-                <div id="screenshots-container" class="flex overflow-x-scroll snap-x snap-mandatory space-x-4 space-x-reverse pb-4">
-                    
-                    <div class="screenshot-card p-2 bg-white rounded-xl snap-start" onclick="openImageModal('img/orders_list.png')">
+                <div id="screenshots-container"
+                    class="flex overflow-x-scroll snap-x snap-mandatory space-x-4 space-x-reverse pb-4">
+
+                    <div class="screenshot-card p-2 bg-white rounded-xl snap-start"
+                        onclick="openImageModal('img/orders_list.png')">
                         <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                            <img src="img/orders_list.png" alt="سندات الطلب" class="w-full h-48 object-cover object-top transition-transform duration-500">
+                            <img src="img/orders_list.png" alt="سندات الطلب"
+                                class="w-full h-48 object-cover object-top transition-transform duration-500">
                         </div>
                         <h4 class="font-bold text-lg text-gray-800 mb-2">قسم المشتريات (سندات الطلب)</h4>
-                        <p class="text-sm text-gray-500 px-4 pb-4">متابعة دقيقة لسندات الطلب والمبالغ المالية والآجال.</p>
+                        <p class="text-sm text-gray-500 px-4 pb-4">متابعة دقيقة لسندات الطلب والمبالغ المالية والآجال.
+                        </p>
                     </div>
 
-                    <div class="screenshot-card p-2 bg-white rounded-xl snap-start" onclick="openImageModal('img/inventory_list.png')">
+                    <div class="screenshot-card p-2 bg-white rounded-xl snap-start"
+                        onclick="openImageModal('img/inventory_list.png')">
                         <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                            <img src="img/inventory_list.png" alt="قائمة إدارة الجرد" class="w-full h-48 object-cover object-top transition-transform duration-500">
+                            <img src="img/inventory_list.png" alt="قائمة إدارة الجرد"
+                                class="w-full h-48 object-cover object-top transition-transform duration-500">
                         </div>
                         <h4 class="font-bold text-lg text-gray-800 mb-2">إدارة الأصول والجرد</h4>
-                        <p class="text-sm text-gray-500 px-4 pb-4">قاعدة بيانات للأصول الثابتة مع تحديد مواقعها وحالتها.</p>
+                        <p class="text-sm text-gray-500 px-4 pb-4">قاعدة بيانات للأصول الثابتة مع تحديد مواقعها وحالتها.
+                        </p>
                     </div>
 
-                    <div class="screenshot-card p-2 bg-white rounded-xl snap-start" onclick="openImageModal('img/barcode_print.png')">
+                    <div class="screenshot-card p-2 bg-white rounded-xl snap-start"
+                        onclick="openImageModal('img/barcode_print.png')">
                         <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                            <img src="img/barcode_print.png" alt="طباعة الباركود" class="w-full h-48 object-cover object-top transition-transform duration-500">
+                            <img src="img/barcode_print.png" alt="طباعة الباركود"
+                                class="w-full h-48 object-cover object-top transition-transform duration-500">
                         </div>
                         <h4 class="font-bold text-lg text-gray-800 mb-2">تقنيات حديثة (الباركود)</h4>
-                        <p class="text-sm text-gray-500 px-4 pb-4">دعم كامل للباركود لتسريع عمليات الإدخال، الإخراج، والجرد.</p>
+                        <p class="text-sm text-gray-500 px-4 pb-4">دعم كامل للباركود لتسريع عمليات الإدخال، الإخراج،
+                            والجرد.</p>
                     </div>
 
-                    <div class="screenshot-card p-2 bg-white rounded-xl snap-start" onclick="openImageModal('img/dashboard.png')">
+                    <div class="screenshot-card p-2 bg-white rounded-xl snap-start"
+                        onclick="openImageModal('img/dashboard.png')">
                         <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                            <img src="img/dashboard.png" alt="لوحة التحكم" class="w-full h-48 object-cover object-top transition-transform duration-500">
+                            <img src="img/dashboard.png" alt="لوحة التحكم"
+                                class="w-full h-48 object-cover object-top transition-transform duration-500">
                         </div>
                         <h4 class="font-bold text-lg text-gray-800 mb-2">لوحة التحكم الرئيسية</h4>
                         <p class="text-sm text-gray-500 px-4 pb-4">نظرة عامة سريعة على المخزون والحركات المالية.</p>
                     </div>
 
                 </div>
-                </div>
-        
+            </div>
+
         </div>
     </section>
 
@@ -228,11 +363,14 @@
                 <h3 class="text-3xl font-bold mt-4 text-gray-800">آخر إصدارات GstockDZ</h3>
             </div>
 
-            <div class="bg-white border border-blue-100 rounded-2xl shadow-lg overflow-hidden transform transition-all hover:shadow-xl">
-                <div class="bg-gradient-to-l from-blue-700 to-blue-500 p-6 text-white flex justify-between items-center">
+            <div
+                class="bg-white border border-blue-100 rounded-2xl shadow-lg overflow-hidden transform transition-all hover:shadow-xl">
+                <div
+                    class="bg-gradient-to-l from-blue-700 to-blue-500 p-6 text-white flex justify-between items-center">
                     <div>
                         <h4 class="text-2xl font-bold flex items-center gap-2">
-                            الإصدار الحالي <span id="displayVersion" class="bg-white/20 px-3 py-1 rounded-lg text-lg">تحميل...</span>
+                            الإصدار الحالي <span id="displayVersion"
+                                class="bg-white/20 px-3 py-1 rounded-lg text-lg">تحميل...</span>
                         </h4>
                         <p class="opacity-90 text-sm mt-1" id="displayDate">--/--/----</p>
                     </div>
@@ -241,7 +379,8 @@
                 <div class="p-8">
                     <h5 class="font-bold text-gray-700 mb-4 text-lg">أبرز التغييرات:</h5>
                     <ul id="displayFeatures" class="space-y-3 mb-8 text-gray-600">
-                        <li class="flex items-center"><i class="fas fa-spinner fa-spin ml-2 text-blue-500"></i> جاري الاتصال بالخادم...</li>
+                        <li class="flex items-center"><i class="fas fa-spinner fa-spin ml-2 text-blue-500"></i> جاري
+                            الاتصال بالخادم...</li>
                     </ul>
                 </div>
             </div>
@@ -256,36 +395,50 @@
                     <h4 class="text-2xl font-bold text-gray-800 mb-2">النسخة التجريبية</h4>
                     <div class="text-4xl font-extrabold text-blue-600 mb-6">0 د.ج</div>
                     <ul class="text-gray-600 space-y-3 mb-8 text-right">
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 ml-2"></i> تسيير المخزون الأساسي</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 ml-2"></i> مستخدم واحد (Admin)</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 ml-2"></i> إنشاء سندات الطلب (تجريبي)</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 ml-2"></i> تسيير المخزون
+                            الأساسي</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 ml-2"></i> مستخدم واحد
+                            (Admin)</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 ml-2"></i> إنشاء سندات الطلب
+                            (تجريبي)</li>
                     </ul>
-                    <button class="w-full py-3 rounded-xl border-2 border-blue-600 text-blue-600 font-bold hover:bg-blue-50" 
-                    onclick="openDownloadModal()">تحميل الآن</button>
+                    <button
+                        class="w-full py-3 rounded-xl border-2 border-blue-600 text-blue-600 font-bold hover:bg-blue-50"
+                        onclick="openDownloadModal()">تحميل الآن</button>
                 </div>
-                <div class="w-full max-w-sm bg-gradient-to-br from-blue-700 to-blue-500 rounded-2xl shadow-2xl p-8 text-white transform md:-translate-y-4">
+                <div
+                    class="w-full max-w-sm bg-gradient-to-br from-blue-700 to-blue-500 rounded-2xl shadow-2xl p-8 text-white transform md:-translate-y-4">
                     <h4 class="text-2xl font-bold mb-2">النسخة الاحترافية (PRO)</h4>
                     <div class="text-4xl font-extrabold mb-6">اتصل بنا</div>
                     <ul class="text-blue-100 space-y-3 mb-8 text-right">
-                        <li class="flex items-center"><i class="fas fa-check text-yellow-300 ml-2"></i> نظام العمل عبر الشبكة</li>
-                        <li class="flex items-center"><i class="fas fa-check text-yellow-300 ml-2"></i> وحدة الجرد السنوي الكاملة</li>
-                        <li class="flex items-center"><i class="fas fa-check text-yellow-300 ml-2"></i> عدد لا محدود من المستخدمين</li>
-                        <li class="flex items-center"><i class="fas fa-check text-yellow-300 ml-2"></i> دعم فني وتحديثات</li>
+                        <li class="flex items-center"><i class="fas fa-check text-yellow-300 ml-2"></i> نظام العمل عبر
+                            الشبكة</li>
+                        <li class="flex items-center"><i class="fas fa-check text-yellow-300 ml-2"></i> وحدة الجرد
+                            السنوي الكاملة</li>
+                        <li class="flex items-center"><i class="fas fa-check text-yellow-300 ml-2"></i> عدد لا محدود من
+                            المستخدمين</li>
+                        <li class="flex items-center"><i class="fas fa-check text-yellow-300 ml-2"></i> دعم فني وتحديثات
+                        </li>
                     </ul>
-                    <a href="#contact" class="block text-center w-full py-3 rounded-xl bg-white text-blue-600 font-bold hover:bg-gray-100">طلب عرض سعر</a>
+                    <a href="#contact"
+                        class="block text-center w-full py-3 rounded-xl bg-white text-blue-600 font-bold hover:bg-gray-100">طلب
+                        عرض سعر</a>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="contact" class="py-20 px-4 bg-white">
-        <div class="container mx-auto max-w-4xl bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row border border-gray-100">
+        <div
+            class="container mx-auto max-w-4xl bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row border border-gray-100">
             <div class="md:w-1/2 bg-blue-800 p-8 text-white flex flex-col justify-center">
                 <h3 class="text-3xl font-bold mb-4">تواصل معنا</h3>
                 <p class="mb-6 opacity-90">نحن هنا لمرافقتكم في رقمنة تسيير مؤسستكم.</p>
                 <div class="space-y-4">
-                    <div class="flex items-center"><i class="fas fa-phone ml-4 opacity-80"></i><span dir="ltr">+213 664 641 042</span></div>
-                    <div class="flex items-center"><i class="fas fa-envelope ml-4 opacity-80"></i><span>marrokmar@gmail.com</span></div>
+                    <div class="flex items-center"><i class="fas fa-phone ml-4 opacity-80"></i><span dir="ltr">+213 664
+                            641 042</span></div>
+                    <div class="flex items-center"><i
+                            class="fas fa-envelope ml-4 opacity-80"></i><span>marrokmar@gmail.com</span></div>
                 </div>
             </div>
             <div class="md:w-1/2 p-8">
@@ -294,7 +447,8 @@
                     <input class="w-full px-3 py-2 border rounded-lg mb-4" type="text" placeholder="اسم المؤسسة">
                     <input class="w-full px-3 py-2 border rounded-lg mb-4" type="email" placeholder="البريد الإلكتروني">
                     <textarea class="w-full px-3 py-2 border rounded-lg mb-4 h-32" placeholder="الرسالة"></textarea>
-                    <button class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700">إرسال</button>
+                    <button
+                        class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700">إرسال</button>
                 </form>
             </div>
         </div>
@@ -313,15 +467,16 @@
             <div class="mb-6 text-blue-600 text-5xl"><i class="fas fa-cloud-download-alt"></i></div>
             <h4 class="text-2xl font-bold mb-2 text-gray-800">تنزيل GstockDZ</h4>
             <p class="text-gray-600 mb-6">اختر الإصدار ونظام التشغيل المناسب لك:</p>
-            
+
             <div id="versionsContainer" class="flex flex-col gap-4 max-h-96 overflow-y-auto p-2">
                 <div class="text-center text-gray-500 py-4">جاري تحميل الإصدارات المتاحة...</div>
             </div>
 
-            <button onclick="closeDownloadModal()" class="text-gray-500 hover:text-gray-800 font-semibold mt-6 text-sm underline">إغلاق</button>
+            <button onclick="closeDownloadModal()"
+                class="text-gray-500 hover:text-gray-800 font-semibold mt-6 text-sm underline">إغلاق</button>
         </div>
     </div>
-    
+
     <div id="imageModal" class="modal" onclick="closeImageModal(event)">
         <div class="modal-content">
             <span class="close-button" onclick="closeImageModal(event)" aria-label="إغلاق">&times;</span>
@@ -340,16 +495,16 @@
         // SLIDER Logic (جديد)
         // ==========================================
         const screenshotsContainer = document.getElementById('screenshots-container');
-        
+
         function scrollScreenshots(direction) {
             // تحديد مسافة التمرير بناءً على اتجاه RTL
             // في اتجاه RTL، التمرير لليمين يكون بقيمة سالبة، واليسار بقيمة موجبة
             const scrollAmount = 350; // مقدار التمرير بالبكسل
-            
+
             // بما أن الاتجاه هو RTL، فإن اليسار (Left) هو اتجاه الزيادة
             // 1: لليسار (Next) -> زيادة الـ scrollLeft
             // -1: لليمين (Previous) -> إنقاص الـ scrollLeft
-            
+
             // يتم استخدام القيمة السالبة لـ scrollLeft ليعمل بشكل صحيح في المتصفحات التي تدعم RTL
             if (direction === 1) { // التمرير إلى اليسار (الصورة التالية)
                 screenshotsContainer.scrollLeft += scrollAmount;
@@ -357,19 +512,19 @@
                 screenshotsContainer.scrollLeft -= scrollAmount;
             }
         }
-        
+
         // ==========================================
         // DOWNLOAD MODAL Logic
         // ==========================================
         const downloadModal = document.getElementById("downloadModal");
         const downloadCloseBtn = downloadModal.querySelector(".close-button");
-        
-        function openDownloadModal() { 
-            downloadModal.style.display = "flex"; 
+
+        function openDownloadModal() {
+            downloadModal.style.display = "flex";
             document.body.style.overflow = "hidden";
         }
-        function closeDownloadModal() { 
-            downloadModal.style.display = "none"; 
+        function closeDownloadModal() {
+            downloadModal.style.display = "none";
             document.body.style.overflow = "auto";
         }
         downloadCloseBtn.onclick = closeDownloadModal;
@@ -392,33 +547,17 @@
                 document.body.style.overflow = "auto";
             }
         }
-        
+
         // ==========================================
         // VERSION CONTROL SYSTEM (Mock Data)
         // ==========================================
         async function checkVersion() {
-            const mockData = {
-                releases: [
-               
-                    {
-                        version: "2.0",
-                        releaseDate: "2025-09-15",
-                        features: [
-                            "الإطلاق الرسمي لوحدة الجرد السنوي.",
-                            "دعم العمل الشبكي (Multi-User) بالكامل.",
-                              "إضافة وحدة طباعة الباركود الجماعية.",
-                            "تحسين واجهة المستخدم لإدارة الأصول الثابتة.",
-                            "إصلاحات أمنية وتحسينات على أداء قاعدة البيانات."
-                        ],
-                        downloadUrlWindows: "#",
-                        downloadUrlLinux: "#",
-                        downloadUrlMac: "#"
-                    }
-                ]
-            };
-
             try {
-                const data = mockData;
+                const response = await fetch('versions.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
                 const releases = data.releases;
 
                 if (!releases || releases.length === 0) throw new Error("No releases found.");
@@ -479,4 +618,5 @@
         document.addEventListener('DOMContentLoaded', checkVersion);
     </script>
 </body>
+
 </html>
