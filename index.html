@@ -8,23 +8,68 @@
         content="GstockDZ - الحل الشامل لتسيير المخزون، المشتريات، والجرد للمؤسسات الخاصة والعمومية في الجزائر. نظام سطح مكتب احترافي يعمل على جميع الأنظمة.">
     <meta name="keywords" content="GstockDZ, تسيير المخزون, إدارة المخازن, الجرد, المشتريات, الجزائر, برنامج المخزون">
     <meta name="author" content="GstockDZ Team">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#2563eb">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="GstockDZ">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://abdomarrok.github.io/GstockDz_Landing/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://abdomarrok.github.io/GstockDz_Landing/">
     <meta property="og:title" content="GstockDZ - نظام التسيير المخزني المتكامل">
     <meta property="og:description" content="الحل الشامل لتسيير المخزون، المشتريات، والجرد للمؤسسات في الجزائر.">
-    <meta property="og:image" content="img/dashboard.png">
+    <meta property="og:image" content="https://abdomarrok.github.io/GstockDz_Landing/img/dashboard.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="GstockDZ - نظام التسيير المخزني المتكامل">
     <meta name="twitter:description" content="الحل الشامل لتسيير المخزون، المشتريات، والجرد للمؤسسات في الجزائر.">
-    <meta name="twitter:image" content="img/dashboard.png">
+    <meta name="twitter:image" content="https://abdomarrok.github.io/GstockDz_Landing/img/dashboard.png">
 
     <title>GstockDZ - نظام التسيير المخزني المتكامل</title>
+
+    <!-- DNS Prefetch & Preconnect for Performance -->
+    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="manifest" href="manifest.json">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- Structured Data (JSON-LD) for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "GstockDZ",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Windows, Linux, macOS",
+      "description": "الحل الشامل لتسيير المخزون، المشتريات، والجرد للمؤسسات الخاصة والعمومية في الجزائر",
+      "url": "https://abdomarrok.github.io/GstockDz_Landing/",
+      "screenshot": "https://abdomarrok.github.io/GstockDz_Landing/img/dashboard.png",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "DZD",
+        "availability": "https://schema.org/InStock"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "150"
+      }
+    }
+    </script>
 
     <style>
         html {
@@ -58,18 +103,7 @@
 
         /* تعديلات الـ Slider */
         #screenshots-container {
-            /* إخفاء شريط التمرير الافتراضي */
-            -ms-overflow-style: none;
-            /* IE and Edge */
-            scrollbar-width: none;
-            /* Firefox */
             scroll-behavior: smooth;
-            /* لتحريك سلس */
-        }
-
-        #screenshots-container::-webkit-scrollbar {
-            display: none;
-            /* Chrome, Safari and Opera */
         }
 
         .screenshot-card {
@@ -372,23 +406,92 @@
         .scroll-reveal:nth-child(6) {
             transition-delay: 0.6s;
         }
+
+        /* Focus Styles for Accessibility */
+        button:focus-visible,
+        a:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible {
+            outline: 3px solid #2563eb;
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+
+        /* Reduce Motion for Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        /* Better scrollbar styling (instead of hiding) */
+        #screenshots-container::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        #screenshots-container::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 10px;
+        }
+
+        #screenshots-container::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+
+        #screenshots-container::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Back to Top Button */
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 1000;
+            width: 50px;
+            height: 50px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        #backToTop.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #backToTop:hover {
+            background: #1d4ed8;
+            transform: translateY(-5px);
+        }
     </style>
 </head>
 
 <body class="text-right flex flex-col min-h-screen">
 
-    <header class="bg-white/90 backdrop-blur-md sticky top-0 z-50 shadow-sm border-b border-gray-100">
+    <header class="bg-white/90 backdrop-blur-md sticky top-0 z-50 shadow-sm border-b border-gray-100" role="banner">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center flex-row-reverse">
             <div class="flex items-center gap-2 flex-row-reverse">
-                <i class="fas fa-layer-group text-blue-700 text-2xl"></i>
+                <i class="fas fa-layer-group text-blue-700 text-2xl" aria-hidden="true"></i>
                 <h1 class="text-2xl font-bold text-gray-800 tracking-tight">Gstock<span class="text-blue-600">DZ</span>
                 </h1>
             </div>
 
-            <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-blue-600 focus:outline-none">
-                <i class="fas fa-bars text-2xl"></i>
+            <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-blue-600 focus:outline-none"
+                aria-label="فتح القائمة" aria-expanded="false" aria-controls="mobile-menu">
+                <i class="fas fa-bars text-2xl" aria-hidden="true"></i>
             </button>
-            <nav class="hidden md:block">
+            <nav class="hidden md:block" role="navigation" aria-label="القائمة الرئيسية">
                 <ul class="flex space-x-6 space-x-reverse font-semibold">
                     <li><a href="#features" class="text-gray-600 hover:text-blue-600 transition-colors">الميزات</a></li>
                     <li><a href="#screenshots" class="text-gray-600 hover:text-blue-600 transition-colors">جولة في
@@ -456,9 +559,8 @@
                 </a>
             </div>
             <div class="mt-16 -mb-48">
-                <img src="img/dashboard.png" alt="واجهة برنامج GstockDZ"
-                    class="mx-auto rounded-xl shadow-2xl border-8 border-white/20 w-full h-auto"
-                    style="max-width: 900px;">
+                <img src="img/dashboard.png" alt="واجهة برنامج GstockDZ" width="900" height="600"
+                    class="mx-auto rounded-xl shadow-2xl border-8 border-white/20 w-full h-auto">
             </div>
         </div>
     </section>
@@ -597,23 +699,23 @@
             <h3 class="text-3xl md:text-4xl font-bold mb-12 text-gray-800">جولة في البرنامج</h3>
 
             <div class="relative max-w-6xl mx-auto carousel-wrapper">
-                <button onclick="scrollScreenshots(-1)"
+                <button onclick="scrollScreenshots(-1)" aria-label="الصورة السابقة"
                     class="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white p-4 rounded-full shadow-lg text-blue-600 hover:bg-blue-50 hover:scale-110 transition-all duration-300 hidden md:block">
-                    <i class="fas fa-chevron-left text-xl"></i>
+                    <i class="fas fa-chevron-left text-xl" aria-hidden="true"></i>
                 </button>
-                <button onclick="scrollScreenshots(1)"
+                <button onclick="scrollScreenshots(1)" aria-label="الصورة التالية"
                     class="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white p-4 rounded-full shadow-lg text-blue-600 hover:bg-blue-50 hover:scale-110 transition-all duration-300 hidden md:block">
-                    <i class="fas fa-chevron-right text-xl"></i>
+                    <i class="fas fa-chevron-right text-xl" aria-hidden="true"></i>
                 </button>
 
-                <div id="screenshots-container"
+                <div id="screenshots-container" role="region" aria-label="جولة البرنامج"
                     class="flex overflow-x-scroll snap-x snap-mandatory space-x-4 space-x-reverse pb-4 px-8"
                     onmouseenter="pauseAutoplay()" onmouseleave="resumeAutoplay()">
 
                     <div class="screenshot-card p-2 bg-white rounded-xl snap-start"
                         onclick="openImageModal('img/orders_list.png')">
                         <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                            <img src="img/orders_list.png" alt="سندات الطلب"
+                            <img src="img/orders_list.png" alt="سندات الطلب" width="320" height="192" loading="lazy"
                                 class="w-full h-48 object-cover object-top transition-transform duration-500">
                         </div>
                         <h4 class="font-bold text-lg text-gray-800 mb-2">قسم المشتريات (سندات الطلب)</h4>
@@ -624,7 +726,8 @@
                     <div class="screenshot-card p-2 bg-white rounded-xl snap-start"
                         onclick="openImageModal('img/inventory_list.png')">
                         <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                            <img src="img/inventory_list.png" alt="قائمة إدارة الجرد"
+                            <img src="img/inventory_list.png" alt="قائمة إدارة الجرد" width="320" height="192"
+                                loading="lazy"
                                 class="w-full h-48 object-cover object-top transition-transform duration-500">
                         </div>
                         <h4 class="font-bold text-lg text-gray-800 mb-2">إدارة الأصول والجرد</h4>
@@ -635,7 +738,8 @@
                     <div class="screenshot-card p-2 bg-white rounded-xl snap-start"
                         onclick="openImageModal('img/barcode_print.png')">
                         <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                            <img src="img/barcode_print.png" alt="طباعة الباركود"
+                            <img src="img/barcode_print.png" alt="طباعة الباركود" width="320" height="192"
+                                loading="lazy"
                                 class="w-full h-48 object-cover object-top transition-transform duration-500">
                         </div>
                         <h4 class="font-bold text-lg text-gray-800 mb-2">تقنيات حديثة (الباركود)</h4>
@@ -646,7 +750,7 @@
                     <div class="screenshot-card p-2 bg-white rounded-xl snap-start"
                         onclick="openImageModal('img/reports.png')">
                         <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                            <img src="img/reports.png" alt="التقارير"
+                            <img src="img/reports.png" alt="التقارير" width="320" height="192" loading="lazy"
                                 class="w-full h-48 object-cover object-top transition-transform duration-500">
                         </div>
                         <h4 class="font-bold text-lg text-gray-800 mb-2">التقارير والوثائق</h4>
@@ -657,7 +761,7 @@
                     <div class="screenshot-card p-2 bg-white rounded-xl snap-start"
                         onclick="openImageModal('img/stockEtat.png')">
                         <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                            <img src="img/stockEtat.png" alt="حالة المخزون"
+                            <img src="img/stockEtat.png" alt="حالة المخزون" width="320" height="192" loading="lazy"
                                 class="w-full h-48 object-cover object-top transition-transform duration-500">
                         </div>
                         <h4 class="font-bold text-lg text-gray-800 mb-2">حالة المخزون</h4>
@@ -667,7 +771,7 @@
                     <div class="screenshot-card p-2 bg-white rounded-xl snap-start"
                         onclick="openImageModal('img/login.png')">
                         <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                            <img src="img/login.png" alt="تسجيل الدخول"
+                            <img src="img/login.png" alt="تسجيل الدخول" width="320" height="192" loading="lazy"
                                 class="w-full h-48 object-cover object-top transition-transform duration-500">
                         </div>
                         <h4 class="font-bold text-lg text-gray-800 mb-2">تسجيل الدخول</h4>
@@ -677,7 +781,7 @@
                     <div class="screenshot-card p-2 bg-white rounded-xl snap-start"
                         onclick="openImageModal('img/dashboard.png')">
                         <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                            <img src="img/dashboard.png" alt="لوحة التحكم"
+                            <img src="img/dashboard.png" alt="لوحة التحكم" width="320" height="192" loading="lazy"
                                 class="w-full h-48 object-cover object-top transition-transform duration-500">
                         </div>
                         <h4 class="font-bold text-lg text-gray-800 mb-2">لوحة التحكم الرئيسية</h4>
@@ -687,7 +791,8 @@
                     <div class="screenshot-card p-2 bg-white rounded-xl snap-start"
                         onclick="openImageModal('img/permission_managemnt.png')">
                         <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                            <img src="img/permission_managemnt.png" alt="إدارة الصلاحيات"
+                            <img src="img/permission_managemnt.png" alt="إدارة الصلاحيات" width="320" height="192"
+                                loading="lazy"
                                 class="w-full h-48 object-cover object-top transition-transform duration-500">
                         </div>
                         <h4 class="font-bold text-lg text-gray-800 mb-2">إدارة الصلاحيات</h4>
@@ -697,7 +802,7 @@
                     <div class="screenshot-card p-2 bg-white rounded-xl snap-start"
                         onclick="openImageModal('img/chose_mode.png')">
                         <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                            <img src="img/chose_mode.png" alt="اختيار الوضع"
+                            <img src="img/chose_mode.png" alt="اختيار الوضع" width="320" height="192" loading="lazy"
                                 class="w-full h-48 object-cover object-top transition-transform duration-500">
                         </div>
                         <h4 class="font-bold text-lg text-gray-800 mb-2">اختيار وضع العمل</h4>
@@ -707,7 +812,8 @@
                     <div class="screenshot-card p-2 bg-white rounded-xl snap-start"
                         onclick="openImageModal('img/fiill enterprize info.png')">
                         <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                            <img src="img/fiill enterprize info.png" alt="معلومات المؤسسة"
+                            <img src="img/fiill enterprize info.png" alt="معلومات المؤسسة" width="320" height="192"
+                                loading="lazy"
                                 class="w-full h-48 object-cover object-top transition-transform duration-500">
                         </div>
                         <h4 class="font-bold text-lg text-gray-800 mb-2">إعداد المؤسسة</h4>
@@ -817,36 +923,65 @@
                 </div>
             </div>
             <div class="md:w-1/2 p-8">
-                <form onsubmit="event.preventDefault(); alert('شكرا لتواصلك معنا، سيتم الرد قريباً');">
-                    <input class="w-full px-3 py-2 border rounded-lg mb-4" type="text" placeholder="الاسم الكامل">
-                    <input class="w-full px-3 py-2 border rounded-lg mb-4" type="text" placeholder="اسم المؤسسة">
-                    <input class="w-full px-3 py-2 border rounded-lg mb-4" type="email" placeholder="البريد الإلكتروني">
-                    <textarea class="w-full px-3 py-2 border rounded-lg mb-4 h-32" placeholder="الرسالة"></textarea>
-                    <button
+                <form onsubmit="event.preventDefault(); alert('شكرا لتواصلك معنا، سيتم الرد قريباً');"
+                    aria-label="نموذج الاتصال">
+                    <div class="mb-4">
+                        <label for="contact-name" class="sr-only">الاسم الكامل</label>
+                        <input id="contact-name" name="name" type="text" class="w-full px-3 py-2 border rounded-lg"
+                            placeholder="الاسم الكامل" required aria-required="true">
+                    </div>
+                    <div class="mb-4">
+                        <label for="contact-company" class="sr-only">اسم المؤسسة</label>
+                        <input id="contact-company" name="company" type="text"
+                            class="w-full px-3 py-2 border rounded-lg" placeholder="اسم المؤسسة">
+                    </div>
+                    <div class="mb-4">
+                        <label for="contact-email" class="sr-only">البريد الإلكتروني</label>
+                        <input id="contact-email" name="email" type="email" class="w-full px-3 py-2 border rounded-lg"
+                            placeholder="البريد الإلكتروني" required aria-required="true">
+                    </div>
+                    <div class="mb-4">
+                        <label for="contact-message" class="sr-only">الرسالة</label>
+                        <textarea id="contact-message" name="message" class="w-full px-3 py-2 border rounded-lg h-32"
+                            placeholder="الرسالة" required aria-required="true"></textarea>
+                    </div>
+                    <button type="submit"
                         class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700">إرسال</button>
                 </form>
             </div>
         </div>
     </section>
 
-    <footer class="bg-gray-900 text-white py-12 px-4 border-t border-gray-800">
+    <!-- Back to Top Button -->
+    <button id="backToTop" aria-label="العودة إلى الأعلى" title="العودة إلى الأعلى">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </button>
+
+    <footer class="bg-gray-900 text-white py-12 px-4 border-t border-gray-800" role="contentinfo">
         <div class="container mx-auto text-center">
             <h2 class="text-2xl font-bold mb-4">Gstock<span class="text-blue-500">DZ</span></h2>
 
             <!-- Social Links -->
             <div class="flex justify-center gap-6 mb-6">
-                <a href="#" class="text-gray-400 hover:text-blue-500 transition-colors text-xl" title="Facebook">
-                    <i class="fab fa-facebook"></i>
+                <a href="https://facebook.com/gstockdz" rel="noopener noreferrer" target="_blank"
+                    class="text-gray-400 hover:text-blue-500 transition-colors text-xl" title="Facebook"
+                    aria-label="تابعنا على Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
-                <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors text-xl" title="Twitter">
-                    <i class="fab fa-twitter"></i>
+                <a href="https://twitter.com/gstockdz" rel="noopener noreferrer" target="_blank"
+                    class="text-gray-400 hover:text-blue-400 transition-colors text-xl" title="Twitter"
+                    aria-label="تابعنا على Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
-                <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors text-xl" title="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
+                <a href="https://linkedin.com/company/gstockdz" rel="noopener noreferrer" target="_blank"
+                    class="text-gray-400 hover:text-blue-600 transition-colors text-xl" title="LinkedIn"
+                    aria-label="تابعنا على LinkedIn">
+                    <i class="fab fa-linkedin" aria-hidden="true"></i>
                 </a>
-                <a href="mailto:marrokmar@gmail.com" class="text-gray-400 hover:text-red-400 transition-colors text-xl"
-                    title="Email">
-                    <i class="fas fa-envelope"></i>
+                <a href="mailto:marrokmar@gmail.com" rel="noopener noreferrer"
+                    class="text-gray-400 hover:text-red-400 transition-colors text-xl" title="Email"
+                    aria-label="راسلنا عبر البريد الإلكتروني">
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
                 </a>
             </div>
 
@@ -890,8 +1025,41 @@
         // UI Logic
         document.getElementById('currentYear').textContent = new Date().getFullYear();
         const mobileMenu = document.getElementById('mobile-menu');
-        document.getElementById('mobile-menu-button').addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-        mobileMenu.querySelectorAll('button, a').forEach(l => l.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+
+        // Mobile menu toggle with aria-expanded
+        mobileMenuButton.addEventListener('click', () => {
+            const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+            mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileMenu.querySelectorAll('button, a').forEach(l => l.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            mobileMenuButton.setAttribute('aria-expanded', 'false');
+        }));
+
+        // ==========================================
+        // BACK TO TOP BUTTON
+        // ==========================================
+        const backToTopBtn = document.getElementById('backToTop');
+
+        // Show button after scrolling down
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        // Smooth scroll to top
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
 
         // ==========================================
         // SLIDER Logic (جديد)

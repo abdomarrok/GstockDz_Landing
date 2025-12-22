@@ -1,0 +1,36 @@
+{
+  "name": "GstockDZ - نظام التسيير المخزني المتكامل",
+  "short_name": "GstockDZ",
+  "description": "الحل الشامل لتسيير المخزون، المشتريات، والجرد للمؤسسات في الجزائر",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "orientation": "portrait-primary",
+  "dir": "rtl",
+  "lang": "ar",
+  "scope": "./",
+  "icons": [
+    {
+      "src": "img/dashboard.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "productivity"],
+  "screenshots": [
+    {
+      "src": "img/dashboard.png",
+      "sizes": "900x600",
+      "type": "image/png",
+      "label": "لوحة التحكم الرئيسية"
+    },
+    {
+      "src": "img/orders_list.png",
+      "sizes": "320x192",
+      "type": "image/png",
+      "label": "قسم المشتريات"
+    }
+  ]
+}
