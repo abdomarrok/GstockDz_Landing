@@ -5,7 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="GstockDZ - الحل الشامل لتسيير المخزون، المشتريات، والجرد للمؤسسات الخاصة والعمومية في الجزائر.">
+        content="GstockDZ - الحل الشامل لتسيير المخزون، المشتريات، والجرد للمؤسسات الخاصة والعمومية في الجزائر. نظام سطح مكتب احترافي يعمل على جميع الأنظمة.">
+    <meta name="keywords" content="GstockDZ, تسيير المخزون, إدارة المخازن, الجرد, المشتريات, الجزائر, برنامج المخزون">
+    <meta name="author" content="GstockDZ Team">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="GstockDZ - نظام التسيير المخزني المتكامل">
+    <meta property="og:description" content="الحل الشامل لتسيير المخزون، المشتريات، والجرد للمؤسسات في الجزائر.">
+    <meta property="og:image" content="img/dashboard.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="GstockDZ - نظام التسيير المخزني المتكامل">
+    <meta name="twitter:description" content="الحل الشامل لتسيير المخزون، المشتريات، والجرد للمؤسسات في الجزائر.">
+    <meta name="twitter:image" content="img/dashboard.png">
+
     <title>GstockDZ - نظام التسيير المخزني المتكامل</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -60,18 +75,98 @@
         .screenshot-card {
             /* جعل البطاقة بعرض ثابت وعدم السماح لها بالانكماش */
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid #e5e7eb;
             cursor: pointer;
-            width: 300px;
+            width: 320px;
             /* عرض ثابت لكل صورة */
             flex-shrink: 0;
             /* منع البطاقات من الانكماش */
         }
 
         .screenshot-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .screenshot-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .screenshot-card img {
+            transition: transform 0.5s ease;
+        }
+
+        /* Carousel gradient overlays */
+        .carousel-wrapper {
+            position: relative;
+        }
+
+        .carousel-wrapper::before,
+        .carousel-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 60px;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .carousel-wrapper::before {
+            right: 0;
+            background: linear-gradient(to left, #f9fafb, transparent);
+        }
+
+        .carousel-wrapper::after {
+            left: 0;
+            background: linear-gradient(to right, #f9fafb, transparent);
+        }
+
+        /* Dot indicators */
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #cbd5e1;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot:hover {
+            background-color: #94a3b8;
+        }
+
+        .carousel-dot.active {
+            background-color: #2563eb;
+            width: 24px;
+            border-radius: 5px;
+        }
+
+        /* Auto-play indicator */
+        .autoplay-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 12px;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .autoplay-indicator button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #2563eb;
+            font-size: 1rem;
         }
 
         /* Modal Styles */
@@ -108,6 +203,9 @@
             max-height: 95%;
             overflow: hidden;
             background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         #fullImage {
@@ -115,9 +213,10 @@
             width: auto;
             max-width: 100%;
             height: auto;
-            max-height: 95vh;
+            max-height: 90vh;
             border-radius: 12px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            object-fit: contain;
         }
 
         #imageModal .close-button {
@@ -129,6 +228,54 @@
             top: 20px;
             left: 20px;
             z-index: 2001;
+        }
+
+        /* Modal Navigation Arrows */
+        .modal-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            color: #2563eb;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 2002;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-nav:hover {
+            background: #2563eb;
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .modal-nav.prev {
+            right: 20px;
+        }
+
+        .modal-nav.next {
+            left: 20px;
+        }
+
+        .image-counter {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            z-index: 2002;
         }
 
         @keyframes fadeIn {
@@ -165,6 +312,65 @@
         .download-option-card:hover {
             border-color: #2563eb;
             background-color: #eff6ff;
+        }
+
+        /* Scroll Animations */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .scroll-reveal-left.revealed {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scroll-reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .scroll-reveal-right.revealed {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Staggered animations */
+        .scroll-reveal:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+
+        .scroll-reveal:nth-child(2) {
+            transition-delay: 0.2s;
+        }
+
+        .scroll-reveal:nth-child(3) {
+            transition-delay: 0.3s;
+        }
+
+        .scroll-reveal:nth-child(4) {
+            transition-delay: 0.4s;
+        }
+
+        .scroll-reveal:nth-child(5) {
+            transition-delay: 0.5s;
+        }
+
+        .scroll-reveal:nth-child(6) {
+            transition-delay: 0.6s;
         }
     </style>
 </head>
@@ -212,23 +418,42 @@
     </header>
 
     <section class="gradient-bg text-white pt-20 pb-24 px-4 rounded-b-[3rem] relative overflow-hidden">
+        <!-- Animated background elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute -top-40 -right-40 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
+        </div>
+
         <div class="container mx-auto text-center relative z-10">
             <span id="heroVersionBadge"
-                class="inline-block bg-white/20 backdrop-blur-sm px-4 py-1 rounded-full text-sm font-semibold mb-6 border border-white/30">
-                الإصدار الاحترافي v2.0</span>
+                class="inline-block bg-white/20 backdrop-blur-sm px-4 py-1 rounded-full text-sm font-semibold mb-6 border border-white/30 animate-pulse">
+                🚀 الإصدار الجديد v2.1 متاح الآن</span>
 
             <h2 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
-                منظومة رقمية شاملة لتسيير <br class="hidden sm:inline"> المخزون، المشتريات، والجرد
+                الحل المتكامل لتسيير <br class="hidden sm:inline"> المخزون والمشتريات
             </h2>
-            <p class="text-lg md:text-2xl mb-10 opacity-90 max-w-3xl mx-auto font-light">
-                GstockDZ: صُمم خصيصاً للمؤسسات العمومية لضبط حركة السلع اليومية، متابعة سندات الطلب، وتبسيط عملية الجرد
-                السنوي.
+            <p class="text-lg md:text-2xl mb-6 opacity-90 max-w-3xl mx-auto font-light">
+                نظام احترافي مصمم للمؤسسات الجزائرية العمومية والخاصة
             </p>
+            <div class="flex flex-wrap justify-center gap-3 mb-10 text-sm opacity-80">
+                <span class="bg-white/10 px-3 py-1 rounded-full"><i class="fas fa-chart-line ml-1"></i> لوحة تحكم
+                    ذكية</span>
+                <span class="bg-white/10 px-3 py-1 rounded-full"><i class="fas fa-print ml-1"></i> تقارير
+                    احترافية</span>
+                <span class="bg-white/10 px-3 py-1 rounded-full"><i class="fas fa-users-cog ml-1"></i> صلاحيات
+                    متقدمة</span>
+                <span class="bg-white/10 px-3 py-1 rounded-full"><i class="fas fa-moon ml-1"></i> الوضع الليلي</span>
+                <span class="bg-white/10 px-3 py-1 rounded-full"><i class="fas fa-globe ml-1"></i> دعم الويب</span>
+            </div>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
                 <button onclick="openDownloadModal()"
                     class="bg-white text-blue-700 font-bold py-4 px-8 rounded-full text-lg shadow-lg hover:bg-gray-50 transform hover:scale-105 transition-all">
-                    <i class="fas fa-download ml-2"></i> تحميل النسخة التجريبية
+                    <i class="fas fa-download ml-2"></i> تحميل مجاني
                 </button>
+                <a href="#features"
+                    class="border-2 border-white/50 text-white font-bold py-4 px-8 rounded-full text-lg hover:bg-white/10 transition-all">
+                    <i class="fas fa-info-circle ml-2"></i> اكتشف المزيد
+                </a>
             </div>
             <div class="mt-16 -mb-48">
                 <img src="img/dashboard.png" alt="واجهة برنامج GstockDZ"
@@ -240,51 +465,128 @@
 
     <section id="features" class="pt-40 pb-20 px-4 bg-white">
         <div class="container mx-auto text-center">
-            <h3 class="text-3xl md:text-4xl font-bold mb-12 text-gray-800">الحل الأمثل للتسيير الإداري</h3>
+            <span class="bg-blue-100 text-blue-700 px-4 py-1 rounded-full text-sm font-bold">الميزات الرئيسية</span>
+            <h3 class="text-3xl md:text-4xl font-bold mt-4 mb-12 text-gray-800">كل ما تحتاجه في منظومة واحدة</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
                 <div
-                    class="p-8 rounded-2xl shadow-sm border border-gray-100 bg-white hover:shadow-xl transition-shadow">
+                    class="scroll-reveal p-8 rounded-2xl shadow-sm border border-gray-100 bg-white hover:shadow-xl transition-shadow">
                     <div class="feature-icon text-5xl mb-6"><i class="fas fa-boxes"></i></div>
-                    <h4 class="text-xl font-bold mb-3">حركات المخزون اليومية</h4>
-                    <p class="text-gray-600">تسجيل وضبط دقيق لجميع عمليات الإدخال (Entrées) والإخراج (Sorties) بشكل
-                        فوري.</p>
-                </div>
-
-                <div
-                    class="p-8 rounded-2xl shadow-sm border border-gray-100 bg-white hover:shadow-xl transition-shadow">
-                    <div class="feature-icon text-5xl mb-6"><i class="fas fa-file-contract"></i></div>
-                    <h4 class="text-xl font-bold mb-3">تسيير المشتريات والطلبات</h4>
-                    <p class="text-gray-600">إنشاء ومتابعة سندات الطلب (Bons de Commande) وإدارة ملفات الموردين.</p>
-                </div>
-
-                <div
-                    class="p-8 rounded-2xl shadow-sm border border-gray-100 bg-white hover:shadow-xl transition-shadow">
-                    <div class="feature-icon text-5xl mb-6"><i class="fas fa-barcode"></i></div>
-                    <h4 class="text-xl font-bold mb-3">الجرد السنوي الذكي</h4>
-                    <p class="text-gray-600">وحدة متخصصة لتسهيل الجرد السنوي وطباعة ملصقات الباركود وتحديد مواقع الأصول.
+                    <h4 class="text-xl font-bold mb-3">إدارة المخزون المتقدمة</h4>
+                    <p class="text-gray-600">تسجيل فوري لحركات الإدخال والإخراج مع تتبع الكميات والقيم المالية لكل صنف.
                     </p>
                 </div>
 
                 <div
-                    class="p-8 rounded-2xl shadow-sm border border-gray-100 bg-white hover:shadow-xl transition-shadow">
-                    <div class="feature-icon text-5xl mb-6"><i class="fas fa-chart-pie"></i></div>
-                    <h4 class="text-xl font-bold mb-3">تقارير وإحصائيات</h4>
-                    <p class="text-gray-600">لوحات تحكم بيانية وتقارير مفصلة حول حالة المخزون واستهلاك المصالح.</p>
+                    class="scroll-reveal p-8 rounded-2xl shadow-sm border border-gray-100 bg-white hover:shadow-xl transition-shadow">
+                    <div class="feature-icon text-5xl mb-6"><i class="fas fa-file-invoice"></i></div>
+                    <h4 class="text-xl font-bold mb-3">سندات الطلب الاحترافية</h4>
+                    <p class="text-gray-600">إنشاء وطباعة سندات الطلب بتصميم رسمي مع متابعة حالة كل طلب ومورديه.</p>
                 </div>
 
                 <div
-                    class="p-8 rounded-2xl shadow-sm border border-gray-100 bg-white hover:shadow-xl transition-shadow">
-                    <div class="feature-icon text-5xl mb-6"><i class="fas fa-network-wired"></i></div>
-                    <h4 class="text-xl font-bold mb-3">عمل شبكي آمن</h4>
-                    <p class="text-gray-600">نظام متعدد المستخدمين بصلاحيات محددة يعمل عبر الشبكة المحلية.</p>
+                    class="scroll-reveal p-8 rounded-2xl shadow-sm border border-gray-100 bg-white hover:shadow-xl transition-shadow">
+                    <div class="feature-icon text-5xl mb-6"><i class="fas fa-print"></i></div>
+                    <h4 class="text-xl font-bold mb-3">تقارير JasperReports</h4>
+                    <p class="text-gray-600">تقارير PDF احترافية لسندات الدخول والخروج والطلب بتصميم رسمي جزائري.</p>
                 </div>
 
                 <div
-                    class="p-8 rounded-2xl shadow-sm border border-gray-100 bg-white hover:shadow-xl transition-shadow">
-                    <div class="feature-icon text-5xl mb-6"><i class="fab fa-java"></i></div>
-                    <h4 class="text-xl font-bold mb-3">استقرار وتوافق</h4>
-                    <p class="text-gray-600">تطبيق سطح مكتب قوي يعمل على جميع الأنظمة (Windows, Linux, macOS).</p>
+                    class="scroll-reveal p-8 rounded-2xl shadow-sm border border-gray-100 bg-white hover:shadow-xl transition-shadow">
+                    <div class="feature-icon text-5xl mb-6"><i class="fas fa-user-shield"></i></div>
+                    <h4 class="text-xl font-bold mb-3">نظام الصلاحيات المتقدم</h4>
+                    <p class="text-gray-600">تحكم كامل في صلاحيات المستخدمين مع إخفاء الميزات حسب الدور (Admin/User).
+                    </p>
+                </div>
+
+                <div
+                    class="scroll-reveal p-8 rounded-2xl shadow-sm border border-gray-100 bg-white hover:shadow-xl transition-shadow">
+                    <div class="feature-icon text-5xl mb-6"><i class="fas fa-chart-area"></i></div>
+                    <h4 class="text-xl font-bold mb-3">لوحة تحكم ذكية</h4>
+                    <p class="text-gray-600">رسوم بيانية تفاعلية وإحصائيات مباشرة حول المخزون والمشتريات والاستهلاك.</p>
+                </div>
+
+                <div
+                    class="scroll-reveal p-8 rounded-2xl shadow-sm border border-gray-100 bg-white hover:shadow-xl transition-shadow">
+                    <div class="feature-icon text-5xl mb-6"><i class="fas fa-globe"></i></div>
+                    <h4 class="text-xl font-bold mb-3">دعم الويب (JPro)</h4>
+                    <p class="text-gray-600">إمكانية الوصول عبر المتصفح بدون تثبيت مع الحفاظ على كامل الوظائف.</p>
+                </div>
+
+                <div
+                    class="scroll-reveal p-8 rounded-2xl shadow-sm border border-gray-100 bg-white hover:shadow-xl transition-shadow">
+                    <div class="feature-icon text-5xl mb-6"><i class="fas fa-moon"></i></div>
+                    <h4 class="text-xl font-bold mb-3">الوضع الليلي</h4>
+                    <p class="text-gray-600">واجهة مظلمة مريحة للعيون للعمل في الإضاءة المنخفضة.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What's New Section -->
+    <section class="py-16 px-4 bg-gradient-to-br from-blue-50 to-indigo-50 border-y border-blue-100">
+        <div class="container mx-auto max-w-5xl">
+            <div class="text-center mb-12">
+                <span class="bg-green-100 text-green-700 px-4 py-1 rounded-full text-sm font-bold">🎉 جديد</span>
+                <h3 class="text-3xl font-bold mt-4 text-gray-800">ما الجديد في الإصدار 2.1؟</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="scroll-reveal bg-white p-6 rounded-xl shadow-sm border border-blue-100 flex gap-4">
+                    <div class="text-3xl text-blue-600"><i class="fas fa-tachometer-alt"></i></div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-2">لوحة تحكم معاد تصميمها</h4>
+                        <p class="text-gray-600 text-sm">واجهة عصرية مع رسوم بيانية تفاعلية ومؤشرات الأداء الرئيسية.</p>
+                    </div>
+                </div>
+
+                <div class="scroll-reveal bg-white p-6 rounded-xl shadow-sm border border-blue-100 flex gap-4">
+                    <div class="text-3xl text-green-600"><i class="fas fa-file-pdf"></i></div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-2">تقارير PDF محسّنة</h4>
+                        <p class="text-gray-600 text-sm">تصميم جديد لسندات الطلب والدخول والخروج مع دعم اللغة العربية.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="scroll-reveal bg-white p-6 rounded-xl shadow-sm border border-blue-100 flex gap-4">
+                    <div class="text-3xl text-purple-600"><i class="fas fa-user-lock"></i></div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-2">صلاحيات متطورة</h4>
+                        <p class="text-gray-600 text-sm">إخفاء الأزرار والميزات تلقائياً حسب صلاحيات المستخدم.</p>
+                    </div>
+                </div>
+
+                <div class="scroll-reveal bg-white p-6 rounded-xl shadow-sm border border-blue-100 flex gap-4">
+                    <div class="text-3xl text-orange-600"><i class="fas fa-database"></i></div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-2">تحسينات قاعدة البيانات</h4>
+                        <p class="text-gray-600 text-sm">ربط محسّن بين الجداول مع ضمان سلامة البيانات.</p>
+                    </div>
+                </div>
+
+                <div class="scroll-reveal bg-white p-6 rounded-xl shadow-sm border border-blue-100 flex gap-4">
+                    <div class="text-3xl text-cyan-600"><i class="fas fa-key"></i></div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-2">واجهة ترخيص جديدة</h4>
+                        <p class="text-gray-600 text-sm">تفعيل سهل عبر لصق مفتاح الترخيص مع نسخ بصمة الجهاز.</p>
+                    </div>
+                </div>
+
+                <div class="scroll-reveal bg-white p-6 rounded-xl shadow-sm border border-blue-100 flex gap-4">
+                    <div class="text-3xl text-pink-600"><i class="fas fa-paint-brush"></i></div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-2">واجهة مستخدم محدّثة</h4>
+                        <p class="text-gray-600 text-sm">تصميم عصري مع تأثيرات انتقالية سلسة وألوان متناسقة.</p>
+                    </div>
+                </div>
+
+                <div class="scroll-reveal bg-white p-6 rounded-xl shadow-sm border border-blue-100 flex gap-4">
+                    <div class="text-3xl text-indigo-600"><i class="fas fa-moon"></i></div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-2">الوضع الليلي (Dark Mode)</h4>
+                        <p class="text-gray-600 text-sm">واجهة مظلمة لراحة العيون أثناء العمل لفترات طويلة.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -294,18 +596,19 @@
         <div class="container mx-auto text-center relative">
             <h3 class="text-3xl md:text-4xl font-bold mb-12 text-gray-800">جولة في البرنامج</h3>
 
-            <div class="relative max-w-6xl mx-auto">
+            <div class="relative max-w-6xl mx-auto carousel-wrapper">
                 <button onclick="scrollScreenshots(-1)"
-                    class="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white p-3 rounded-full shadow-lg text-blue-600 hover:bg-gray-100 transition duration-300 hidden md:block">
+                    class="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white p-4 rounded-full shadow-lg text-blue-600 hover:bg-blue-50 hover:scale-110 transition-all duration-300 hidden md:block">
                     <i class="fas fa-chevron-left text-xl"></i>
                 </button>
                 <button onclick="scrollScreenshots(1)"
-                    class="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white p-3 rounded-full shadow-lg text-blue-600 hover:bg-gray-100 transition duration-300 hidden md:block">
+                    class="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white p-4 rounded-full shadow-lg text-blue-600 hover:bg-blue-50 hover:scale-110 transition-all duration-300 hidden md:block">
                     <i class="fas fa-chevron-right text-xl"></i>
                 </button>
 
                 <div id="screenshots-container"
-                    class="flex overflow-x-scroll snap-x snap-mandatory space-x-4 space-x-reverse pb-4">
+                    class="flex overflow-x-scroll snap-x snap-mandatory space-x-4 space-x-reverse pb-4 px-8"
+                    onmouseenter="pauseAutoplay()" onmouseleave="resumeAutoplay()">
 
                     <div class="screenshot-card p-2 bg-white rounded-xl snap-start"
                         onclick="openImageModal('img/orders_list.png')">
@@ -341,6 +644,37 @@
                     </div>
 
                     <div class="screenshot-card p-2 bg-white rounded-xl snap-start"
+                        onclick="openImageModal('img/reports.png')">
+                        <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
+                            <img src="img/reports.png" alt="التقارير"
+                                class="w-full h-48 object-cover object-top transition-transform duration-500">
+                        </div>
+                        <h4 class="font-bold text-lg text-gray-800 mb-2">التقارير والوثائق</h4>
+                        <p class="text-sm text-gray-500 px-4 pb-4">طباعة سندات الطلب والإدخال والإخراج بتصميم احترافي.
+                        </p>
+                    </div>
+
+                    <div class="screenshot-card p-2 bg-white rounded-xl snap-start"
+                        onclick="openImageModal('img/stockEtat.png')">
+                        <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
+                            <img src="img/stockEtat.png" alt="حالة المخزون"
+                                class="w-full h-48 object-cover object-top transition-transform duration-500">
+                        </div>
+                        <h4 class="font-bold text-lg text-gray-800 mb-2">حالة المخزون</h4>
+                        <p class="text-sm text-gray-500 px-4 pb-4">متابعة الكميات والحركات لكل صنف بشكل مفصل.</p>
+                    </div>
+
+                    <div class="screenshot-card p-2 bg-white rounded-xl snap-start"
+                        onclick="openImageModal('img/login.png')">
+                        <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
+                            <img src="img/login.png" alt="تسجيل الدخول"
+                                class="w-full h-48 object-cover object-top transition-transform duration-500">
+                        </div>
+                        <h4 class="font-bold text-lg text-gray-800 mb-2">تسجيل الدخول</h4>
+                        <p class="text-sm text-gray-500 px-4 pb-4">واجهة تسجيل دخول آمنة مع نظام صلاحيات متعدد.</p>
+                    </div>
+
+                    <div class="screenshot-card p-2 bg-white rounded-xl snap-start"
                         onclick="openImageModal('img/dashboard.png')">
                         <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
                             <img src="img/dashboard.png" alt="لوحة التحكم"
@@ -350,11 +684,52 @@
                         <p class="text-sm text-gray-500 px-4 pb-4">نظرة عامة سريعة على المخزون والحركات المالية.</p>
                     </div>
 
+                    <div class="screenshot-card p-2 bg-white rounded-xl snap-start"
+                        onclick="openImageModal('img/permission_managemnt.png')">
+                        <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
+                            <img src="img/permission_managemnt.png" alt="إدارة الصلاحيات"
+                                class="w-full h-48 object-cover object-top transition-transform duration-500">
+                        </div>
+                        <h4 class="font-bold text-lg text-gray-800 mb-2">إدارة الصلاحيات</h4>
+                        <p class="text-sm text-gray-500 px-4 pb-4">نظام صلاحيات متقدم للتحكم في وصول المستخدمين.</p>
+                    </div>
+
+                    <div class="screenshot-card p-2 bg-white rounded-xl snap-start"
+                        onclick="openImageModal('img/chose_mode.png')">
+                        <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
+                            <img src="img/chose_mode.png" alt="اختيار الوضع"
+                                class="w-full h-48 object-cover object-top transition-transform duration-500">
+                        </div>
+                        <h4 class="font-bold text-lg text-gray-800 mb-2">اختيار وضع العمل</h4>
+                        <p class="text-sm text-gray-500 px-4 pb-4">اختيار بين وضع الخادم أو العميل للعمل الشبكي.</p>
+                    </div>
+
+                    <div class="screenshot-card p-2 bg-white rounded-xl snap-start"
+                        onclick="openImageModal('img/fiill enterprize info.png')">
+                        <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
+                            <img src="img/fiill enterprize info.png" alt="معلومات المؤسسة"
+                                class="w-full h-48 object-cover object-top transition-transform duration-500">
+                        </div>
+                        <h4 class="font-bold text-lg text-gray-800 mb-2">إعداد المؤسسة</h4>
+                        <p class="text-sm text-gray-500 px-4 pb-4">تخصيص معلومات المؤسسة والشعار والعنوان.</p>
+                    </div>
                 </div>
+            </div>
+
+            <!-- Carousel Dots -->
+            <div id="carousel-dots" class="carousel-dots"></div>
+
+            <!-- Autoplay Control -->
+            <div class="autoplay-indicator">
+                <button id="autoplayBtn" onclick="toggleAutoplay()" title="إيقاف/تشغيل التمرير التلقائي">
+                    <i class="fas fa-pause"></i>
+                </button>
+                <span>تمرير تلقائي</span>
             </div>
 
         </div>
     </section>
+
 
     <section id="updates" class="py-16 px-4 bg-white border-t border-gray-100">
         <div class="container mx-auto max-w-4xl">
@@ -454,10 +829,30 @@
         </div>
     </section>
 
-    <footer class="bg-gray-900 text-white py-10 px-4 border-t border-gray-800">
+    <footer class="bg-gray-900 text-white py-12 px-4 border-t border-gray-800">
         <div class="container mx-auto text-center">
             <h2 class="text-2xl font-bold mb-4">Gstock<span class="text-blue-500">DZ</span></h2>
-            <p class="text-gray-400 text-sm">&copy; <span id="currentYear"></span> GstockDZ. صنع في الجزائر.</p>
+
+            <!-- Social Links -->
+            <div class="flex justify-center gap-6 mb-6">
+                <a href="#" class="text-gray-400 hover:text-blue-500 transition-colors text-xl" title="Facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors text-xl" title="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors text-xl" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="mailto:marrokmar@gmail.com" class="text-gray-400 hover:text-red-400 transition-colors text-xl"
+                    title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+
+            <p class="text-gray-400 text-sm mb-2">&copy; <span id="currentYear"></span> GstockDZ. صنع بكل ❤️ في الجزائر.
+            </p>
+            <p class="text-gray-500 text-xs">تطوير وتصميم: فريق GstockDZ</p>
         </div>
     </footer>
 
@@ -478,10 +873,17 @@
     </div>
 
     <div id="imageModal" class="modal" onclick="closeImageModal(event)">
+        <button class="modal-nav prev" onclick="event.stopPropagation(); navigateImage(-1)" title="السابق">
+            <i class="fas fa-chevron-right"></i>
+        </button>
         <div class="modal-content">
             <span class="close-button" onclick="closeImageModal(event)" aria-label="إغلاق">&times;</span>
             <img id="fullImage" src="" alt="صورة مكبرة لواجهة البرنامج">
         </div>
+        <button class="modal-nav next" onclick="event.stopPropagation(); navigateImage(1)" title="التالي">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="image-counter"><span id="currentImageIndex">1</span> / <span id="totalImages">10</span></div>
     </div>
 
     <script>
@@ -511,6 +913,160 @@
             } else if (direction === -1) { // التمرير إلى اليمين (الصورة السابقة)
                 screenshotsContainer.scrollLeft -= scrollAmount;
             }
+            updateCarouselDots();
+        }
+
+        // ==========================================
+        // CAROUSEL AUTO-PLAY & DOTS
+        // ==========================================
+        let autoplayInterval = null;
+        let isAutoplayPaused = false;
+        const AUTOPLAY_DELAY = 4000; // 4 seconds
+
+        function startAutoplay() {
+            if (autoplayInterval) clearInterval(autoplayInterval);
+            autoplayInterval = setInterval(() => {
+                if (!isAutoplayPaused) {
+                    // Check if at end, loop back to start (RTL uses negative scrollLeft)
+                    const container = document.getElementById('screenshots-container');
+                    const maxScroll = container.scrollWidth - container.clientWidth;
+                    // In RTL, scrollLeft starts at 0 and goes negative
+                    if (container.scrollLeft <= -(maxScroll - 50)) {
+                        container.scrollLeft = 0;
+                    } else {
+                        scrollScreenshots(-1); // Use -1 for RTL (scroll left = next)
+                    }
+                }
+            }, AUTOPLAY_DELAY);
+        }
+
+        function pauseAutoplay() {
+            isAutoplayPaused = true;
+            const btn = document.getElementById('autoplayBtn');
+            if (btn) btn.innerHTML = '<i class="fas fa-play"></i>';
+        }
+
+        function resumeAutoplay() {
+            isAutoplayPaused = false;
+            const btn = document.getElementById('autoplayBtn');
+            if (btn) btn.innerHTML = '<i class="fas fa-pause"></i>';
+        }
+
+        function toggleAutoplay() {
+            if (isAutoplayPaused) {
+                resumeAutoplay();
+            } else {
+                pauseAutoplay();
+            }
+        }
+
+        function updateCarouselDots() {
+            const container = document.getElementById('screenshots-container');
+            const cards = container.querySelectorAll('.screenshot-card');
+            const dots = document.querySelectorAll('.carousel-dot');
+            const cardWidth = 340; // card width + gap
+            const currentIndex = Math.round(Math.abs(container.scrollLeft) / cardWidth);
+
+            dots.forEach((dot, index) => {
+                if (index === currentIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        function scrollToCard(index) {
+            const container = document.getElementById('screenshots-container');
+            const cardWidth = 340;
+            container.scrollLeft = -(index * cardWidth); // Negative for RTL
+            updateCarouselDots();
+        }
+
+        function initCarouselDots() {
+            const container = document.getElementById('screenshots-container');
+            const cards = container.querySelectorAll('.screenshot-card');
+            const dotsContainer = document.getElementById('carousel-dots');
+
+            if (!dotsContainer) return;
+
+            dotsContainer.innerHTML = '';
+            cards.forEach((_, index) => {
+                const dot = document.createElement('button');
+                dot.className = 'carousel-dot' + (index === 0 ? ' active' : '');
+                dot.onclick = () => scrollToCard(index);
+                dotsContainer.appendChild(dot);
+            });
+
+            // Listen for scroll to update dots
+            container.addEventListener('scroll', () => {
+                updateCarouselDots();
+            });
+
+            // Start autoplay
+            startAutoplay();
+
+            // Initialize keyboard navigation
+            initKeyboardNavigation();
+        }
+
+        // ==========================================
+        // KEYBOARD NAVIGATION
+        // ==========================================
+        function initKeyboardNavigation() {
+            document.addEventListener('keydown', (e) => {
+                // Check if image modal is open
+                const imageModal = document.getElementById('imageModal');
+                const downloadModal = document.getElementById('downloadModal');
+
+                // Escape key - close modals
+                if (e.key === 'Escape') {
+                    if (imageModal && imageModal.style.display === 'flex') {
+                        imageModal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                    if (downloadModal && downloadModal.style.display === 'flex') {
+                        downloadModal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                    return;
+                }
+
+                // Arrow keys - check if image modal is open first
+                if (document.activeElement.tagName === 'INPUT' ||
+                    document.activeElement.tagName === 'TEXTAREA') {
+                    return;
+                }
+
+                // If image modal is open, navigate between images
+                if (imageModal && imageModal.style.display === 'flex') {
+                    if (e.key === 'ArrowLeft') {
+                        e.preventDefault();
+                        navigateImage(1); // Next image in RTL
+                    } else if (e.key === 'ArrowRight') {
+                        e.preventDefault();
+                        navigateImage(-1); // Previous image in RTL
+                    }
+                    return;
+                }
+
+                // Check if screenshots section is in view for carousel navigation
+                const screenshotsSection = document.getElementById('screenshots');
+                if (!screenshotsSection) return;
+
+                const rect = screenshotsSection.getBoundingClientRect();
+                const isInView = rect.top < window.innerHeight && rect.bottom > 0;
+
+                if (isInView) {
+                    if (e.key === 'ArrowLeft') {
+                        e.preventDefault();
+                        scrollScreenshots(-1); // Next slide (scroll left visually in RTL)
+                    } else if (e.key === 'ArrowRight') {
+                        e.preventDefault();
+                        scrollScreenshots(1); // Previous slide (scroll right visually in RTL)
+                    }
+                }
+            });
         }
 
         // ==========================================
@@ -530,15 +1086,44 @@
         downloadCloseBtn.onclick = closeDownloadModal;
 
         // ==========================================
-        // IMAGE MODAL Logic
+        // IMAGE MODAL Logic with Navigation
         // ==========================================
         const imageModal = document.getElementById("imageModal");
         const fullImage = document.getElementById("fullImage");
+        let currentImageIndex = 0;
+        let imageList = [];
+
+        // Get all screenshot images
+        function getImageList() {
+            const cards = document.querySelectorAll('#screenshots-container .screenshot-card');
+            return Array.from(cards).map(card => {
+                const onclick = card.getAttribute('onclick');
+                const match = onclick.match(/openImageModal\('([^']+)'\)/);
+                return match ? match[1] : null;
+            }).filter(Boolean);
+        }
 
         function openImageModal(imageSrc) {
-            fullImage.src = imageSrc;
+            imageList = getImageList();
+            currentImageIndex = imageList.indexOf(imageSrc);
+            if (currentImageIndex === -1) currentImageIndex = 0;
+
+            updateModalImage();
             imageModal.style.display = "flex";
             document.body.style.overflow = "hidden";
+        }
+
+        function updateModalImage() {
+            fullImage.src = imageList[currentImageIndex];
+            document.getElementById('currentImageIndex').textContent = currentImageIndex + 1;
+            document.getElementById('totalImages').textContent = imageList.length;
+        }
+
+        function navigateImage(direction) {
+            currentImageIndex += direction;
+            if (currentImageIndex < 0) currentImageIndex = imageList.length - 1;
+            if (currentImageIndex >= imageList.length) currentImageIndex = 0;
+            updateModalImage();
         }
 
         function closeImageModal(event) {
@@ -615,7 +1200,31 @@
             }
         }
 
-        document.addEventListener('DOMContentLoaded', checkVersion);
+        // ==========================================
+        // SCROLL REVEAL Animation
+        // ==========================================
+        function initScrollReveal() {
+            const revealElements = document.querySelectorAll('.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            revealElements.forEach(el => observer.observe(el));
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            checkVersion();
+            initScrollReveal();
+            initCarouselDots();
+        });
     </script>
 </body>
 
