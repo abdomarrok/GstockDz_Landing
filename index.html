@@ -14,6 +14,11 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="GstockDZ">
 
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" href="img/logo 1.png" sizes="any">
+    <link rel="apple-touch-icon" href="img/logo 1.png">
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://abdomarrok.github.io/GstockDz_Landing/">
 
@@ -22,7 +27,7 @@
     <meta property="og:url" content="https://abdomarrok.github.io/GstockDz_Landing/">
     <meta property="og:title" content="GstockDZ - نظام التسيير المخزني المتكامل">
     <meta property="og:description" content="الحل الشامل لتسيير المخزون، المشتريات، والجرد للمؤسسات في الجزائر.">
-    <meta property="og:image" content="https://abdomarrok.github.io/GstockDz_Landing/img/dashboard.png">
+    <meta property="og:image" content="https://abdomarrok.github.io/GstockDz_Landing/img/dashboard.webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
@@ -30,7 +35,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="GstockDZ - نظام التسيير المخزني المتكامل">
     <meta name="twitter:description" content="الحل الشامل لتسيير المخزون، المشتريات، والجرد للمؤسسات في الجزائر.">
-    <meta name="twitter:image" content="https://abdomarrok.github.io/GstockDz_Landing/img/dashboard.png">
+    <meta name="twitter:image" content="https://abdomarrok.github.io/GstockDz_Landing/img/dashboard.webp">
 
     <title>GstockDZ - نظام التسيير المخزني المتكامل</title>
 
@@ -56,7 +61,7 @@
       "operatingSystem": "Windows, Linux, macOS",
       "description": "الحل الشامل لتسيير المخزون، المشتريات، والجرد للمؤسسات الخاصة والعمومية في الجزائر",
       "url": "https://abdomarrok.github.io/GstockDz_Landing/",
-      "screenshot": "https://abdomarrok.github.io/GstockDz_Landing/img/dashboard.png",
+      "screenshot": "https://abdomarrok.github.io/GstockDz_Landing/img/dashboard.webp",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -71,520 +76,8 @@
     }
     </script>
 
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Cairo', sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-        }
-
-        .gradient-bg {
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-        }
-
-        .btn-primary {
-            background-color: #2563eb;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary:hover {
-            background-color: #1d4ed8;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-        }
-
-        .feature-icon {
-            color: #2563eb;
-        }
-
-        /* تعديلات الـ Slider */
-        #screenshots-container {
-            scroll-behavior: smooth;
-        }
-
-        .screenshot-card {
-            /* جعل البطاقة بعرض ثابت وعدم السماح لها بالانكماش */
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #e5e7eb;
-            cursor: pointer;
-            width: 320px;
-            /* عرض ثابت لكل صورة */
-            flex-shrink: 0;
-            /* منع البطاقات من الانكماش */
-        }
-
-        .screenshot-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .screenshot-card:hover img {
-            transform: scale(1.05);
-        }
-
-        .screenshot-card img {
-            transition: transform 0.5s ease;
-        }
-
-        /* Carousel gradient overlays */
-        .carousel-wrapper {
-            position: relative;
-        }
-
-        .carousel-wrapper::before,
-        .carousel-wrapper::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 60px;
-            z-index: 5;
-            pointer-events: none;
-        }
-
-        .carousel-wrapper::before {
-            right: 0;
-            background: linear-gradient(to left, #f9fafb, transparent);
-        }
-
-        .carousel-wrapper::after {
-            left: 0;
-            background: linear-gradient(to right, #f9fafb, transparent);
-        }
-
-        /* Dot indicators */
-        .carousel-dots {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 20px;
-        }
-
-        .carousel-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: #cbd5e1;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .carousel-dot:hover {
-            background-color: #94a3b8;
-        }
-
-        .carousel-dot.active {
-            background-color: #2563eb;
-            width: 24px;
-            border-radius: 5px;
-        }
-
-        /* Auto-play indicator */
-        .autoplay-indicator {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 12px;
-            font-size: 0.875rem;
-            color: #6b7280;
-        }
-
-        .autoplay-indicator button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #2563eb;
-            font-size: 1rem;
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(5px);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background-color: #fff;
-            margin: auto;
-            padding: 30px;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 550px;
-            text-align: center;
-            position: relative;
-            animation: fadeIn 0.3s;
-        }
-
-        #imageModal .modal-content {
-            padding: 0;
-            max-width: 95%;
-            max-height: 95%;
-            overflow: hidden;
-            background: transparent;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        #fullImage {
-            display: block;
-            width: auto;
-            max-width: 100%;
-            height: auto;
-            max-height: 90vh;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-            object-fit: contain;
-        }
-
-        #imageModal .close-button {
-            color: #f8f8f8;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 50%;
-            padding: 5px 12px;
-            font-size: 36px;
-            top: 20px;
-            left: 20px;
-            z-index: 2001;
-        }
-
-        /* Modal Navigation Arrows */
-        .modal-nav {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.9);
-            color: #2563eb;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 24px;
-            cursor: pointer;
-            z-index: 2002;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .modal-nav:hover {
-            background: #2563eb;
-            color: white;
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .modal-nav.prev {
-            right: 20px;
-        }
-
-        .modal-nav.next {
-            left: 20px;
-        }
-
-        .image-counter {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.6);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 14px;
-            z-index: 2002;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .close-button {
-            position: absolute;
-            top: 15px;
-            left: 20px;
-            color: #aaa;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .download-option-card {
-            background-color: #f3f4f6;
-            padding: 15px;
-            border-radius: 12px;
-            border: 2px solid transparent;
-            text-align: right;
-            transition: all 0.2s ease;
-        }
-
-        .download-option-card:hover {
-            border-color: #2563eb;
-            background-color: #eff6ff;
-        }
-
-        /* Scroll Animations */
-        .scroll-reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .scroll-reveal.revealed {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .scroll-reveal-left {
-            opacity: 0;
-            transform: translateX(-40px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .scroll-reveal-left.revealed {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .scroll-reveal-right {
-            opacity: 0;
-            transform: translateX(40px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .scroll-reveal-right.revealed {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        /* Staggered animations */
-        .scroll-reveal:nth-child(1) {
-            transition-delay: 0.1s;
-        }
-
-        .scroll-reveal:nth-child(2) {
-            transition-delay: 0.2s;
-        }
-
-        .scroll-reveal:nth-child(3) {
-            transition-delay: 0.3s;
-        }
-
-        .scroll-reveal:nth-child(4) {
-            transition-delay: 0.4s;
-        }
-
-        .scroll-reveal:nth-child(5) {
-            transition-delay: 0.5s;
-        }
-
-        .scroll-reveal:nth-child(6) {
-            transition-delay: 0.6s;
-        }
-
-        /* Focus Styles for Accessibility */
-        button:focus-visible,
-        a:focus-visible,
-        input:focus-visible,
-        textarea:focus-visible {
-            outline: 3px solid #2563eb;
-            outline-offset: 2px;
-            border-radius: 4px;
-        }
-
-        /* Reduce Motion for Accessibility */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-        }
-
-        /* Better scrollbar styling (instead of hiding) */
-        #screenshots-container::-webkit-scrollbar {
-            height: 6px;
-        }
-
-        #screenshots-container::-webkit-scrollbar-track {
-            background: #f1f5f9;
-            border-radius: 10px;
-        }
-
-        #screenshots-container::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 10px;
-        }
-
-        #screenshots-container::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
-
-        /* Skeleton Loader for Screenshots */
-        .skeleton {
-            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-            background-size: 200% 100%;
-            animation: skeleton-loading 1.5s ease-in-out infinite;
-        }
-
-        @keyframes skeleton-loading {
-            0% {
-                background-position: 200% 0;
-            }
-
-            100% {
-                background-position: -200% 0;
-            }
-        }
-
-        .skeleton-card {
-            width: 320px;
-            flex-shrink: 0;
-        }
-
-        /* Button Ripple Effect */
-        .btn-ripple {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-ripple::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .btn-ripple:active::after {
-            width: 300px;
-            height: 300px;
-        }
-
-        /* Toast Notification */
-        .toast {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            background: white;
-            padding: 16px 24px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            transform: translateX(400px);
-            opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 1001;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .toast.show {
-            transform: translateX(0);
-            opacity: 1;
-        }
-
-        .toast.success {
-            border-left: 4px solid #10b981;
-        }
-
-        .toast.error {
-            border-left: 4px solid #ef4444;
-        }
-
-        .toast.info {
-            border-left: 4px solid #3b82f6;
-        }
-
-        /* Enhanced Stagger Animation for Feature Cards */
-        .scroll-reveal:nth-child(1) {
-            transition-delay: 0.1s;
-        }
-
-        .scroll-reveal:nth-child(2) {
-            transition-delay: 0.2s;
-        }
-
-        .scroll-reveal:nth-child(3) {
-            transition-delay: 0.3s;
-        }
-
-        .scroll-reveal:nth-child(4) {
-            transition-delay: 0.4s;
-        }
-
-        .scroll-reveal:nth-child(5) {
-            transition-delay: 0.5s;
-        }
-
-        .scroll-reveal:nth-child(6) {
-            transition-delay: 0.6s;
-        }
-
-        .scroll-reveal:nth-child(7) {
-            transition-delay: 0.7s;
-        }
-
-        /* Back to Top Button */
-        #backToTop {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            z-index: 1000;
-            width: 50px;
-            height: 50px;
-            background: #2563eb;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-        }
-
-        #backToTop.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        #backToTop:hover {
-            background: #1d4ed8;
-            transform: translateY(-5px);
-        }
-    </style>
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body class="text-right flex flex-col min-h-screen">
@@ -669,7 +162,7 @@
                 </a>
             </div>
             <div class="mt-16 -mb-48">
-                <img src="img/dashboard.png" alt="واجهة برنامج GstockDZ" width="900" height="600"
+                <img src="img/dashboard.webp" alt="واجهة برنامج GstockDZ" width="900" height="600"
                     class="mx-auto rounded-xl shadow-2xl border-8 border-white/20 w-full h-auto">
             </div>
         </div>
@@ -823,9 +316,9 @@
                     onmouseenter="pauseAutoplay()" onmouseleave="resumeAutoplay()">
 
                     <div class="screenshot-card p-2 bg-white rounded-xl snap-start"
-                        onclick="openImageModal('img/orders_list.png')">
+                        onclick="openImageModal('img/orders_list.webp')">
                         <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                            <img src="img/orders_list.png" alt="سندات الطلب" width="320" height="192" loading="lazy"
+                            <img src="img/orders_list.webp" alt="سندات الطلب" width="320" height="192" loading="lazy"
                                 class="w-full h-48 object-cover object-top transition-transform duration-500">
                         </div>
                         <h4 class="font-bold text-lg text-gray-800 mb-2">قسم المشتريات (سندات الطلب)</h4>
@@ -834,9 +327,9 @@
                     </div>
 
                     <div class="screenshot-card p-2 bg-white rounded-xl snap-start"
-                        onclick="openImageModal('img/inventory_list.png')">
+                        onclick="openImageModal('img/inventory_list.webp')">
                         <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                            <img src="img/inventory_list.png" alt="قائمة إدارة الجرد" width="320" height="192"
+                            <img src="img/inventory_list.webp" alt="قائمة إدارة الجرد" width="320" height="192"
                                 loading="lazy"
                                 class="w-full h-48 object-cover object-top transition-transform duration-500">
                         </div>
@@ -846,9 +339,9 @@
                     </div>
 
                     <div class="screenshot-card p-2 bg-white rounded-xl snap-start"
-                        onclick="openImageModal('img/barcode_print.png')">
+                        onclick="openImageModal('img/barcode_print.webp')">
                         <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                            <img src="img/barcode_print.png" alt="طباعة الباركود" width="320" height="192"
+                            <img src="img/barcode_print.webp" alt="طباعة الباركود" width="320" height="192"
                                 loading="lazy"
                                 class="w-full h-48 object-cover object-top transition-transform duration-500">
                         </div>
@@ -858,9 +351,9 @@
                     </div>
 
                     <div class="screenshot-card p-2 bg-white rounded-xl snap-start"
-                        onclick="openImageModal('img/reports.png')">
+                        onclick="openImageModal('img/reports.webp')">
                         <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                            <img src="img/reports.png" alt="التقارير" width="320" height="192" loading="lazy"
+                            <img src="img/reports.webp" alt="التقارير" width="320" height="192" loading="lazy"
                                 class="w-full h-48 object-cover object-top transition-transform duration-500">
                         </div>
                         <h4 class="font-bold text-lg text-gray-800 mb-2">التقارير والوثائق</h4>
@@ -869,9 +362,9 @@
                     </div>
 
                     <div class="screenshot-card p-2 bg-white rounded-xl snap-start"
-                        onclick="openImageModal('img/stockEtat.png')">
+                        onclick="openImageModal('img/stockEtat.webp')">
                         <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                            <img src="img/stockEtat.png" alt="حالة المخزون" width="320" height="192" loading="lazy"
+                            <img src="img/stockEtat.webp" alt="حالة المخزون" width="320" height="192" loading="lazy"
                                 class="w-full h-48 object-cover object-top transition-transform duration-500">
                         </div>
                         <h4 class="font-bold text-lg text-gray-800 mb-2">حالة المخزون</h4>
@@ -879,9 +372,9 @@
                     </div>
 
                     <div class="screenshot-card p-2 bg-white rounded-xl snap-start"
-                        onclick="openImageModal('img/login.png')">
+                        onclick="openImageModal('img/login.webp')">
                         <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                            <img src="img/login.png" alt="تسجيل الدخول" width="320" height="192" loading="lazy"
+                            <img src="img/login.webp" alt="تسجيل الدخول" width="320" height="192" loading="lazy"
                                 class="w-full h-48 object-cover object-top transition-transform duration-500">
                         </div>
                         <h4 class="font-bold text-lg text-gray-800 mb-2">تسجيل الدخول</h4>
@@ -889,9 +382,9 @@
                     </div>
 
                     <div class="screenshot-card p-2 bg-white rounded-xl snap-start"
-                        onclick="openImageModal('img/dashboard.png')">
+                        onclick="openImageModal('img/dashboard.webp')">
                         <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                            <img src="img/dashboard.png" alt="لوحة التحكم" width="320" height="192" loading="lazy"
+                            <img src="img/dashboard.webp" alt="لوحة التحكم" width="320" height="192" loading="lazy"
                                 class="w-full h-48 object-cover object-top transition-transform duration-500">
                         </div>
                         <h4 class="font-bold text-lg text-gray-800 mb-2">لوحة التحكم الرئيسية</h4>
@@ -899,9 +392,9 @@
                     </div>
 
                     <div class="screenshot-card p-2 bg-white rounded-xl snap-start"
-                        onclick="openImageModal('img/permission_managemnt.png')">
+                        onclick="openImageModal('img/permission_managemnt.webp')">
                         <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                            <img src="img/permission_managemnt.png" alt="إدارة الصلاحيات" width="320" height="192"
+                            <img src="img/permission_managemnt.webp" alt="إدارة الصلاحيات" width="320" height="192"
                                 loading="lazy"
                                 class="w-full h-48 object-cover object-top transition-transform duration-500">
                         </div>
@@ -910,9 +403,9 @@
                     </div>
 
                     <div class="screenshot-card p-2 bg-white rounded-xl snap-start"
-                        onclick="openImageModal('img/chose_mode.png')">
+                        onclick="openImageModal('img/chose_mode.webp')">
                         <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                            <img src="img/chose_mode.png" alt="اختيار الوضع" width="320" height="192" loading="lazy"
+                            <img src="img/chose_mode.webp" alt="اختيار الوضع" width="320" height="192" loading="lazy"
                                 class="w-full h-48 object-cover object-top transition-transform duration-500">
                         </div>
                         <h4 class="font-bold text-lg text-gray-800 mb-2">اختيار وضع العمل</h4>
@@ -920,9 +413,9 @@
                     </div>
 
                     <div class="screenshot-card p-2 bg-white rounded-xl snap-start"
-                        onclick="openImageModal('img/fiill enterprize info.png')">
+                        onclick="openImageModal('img/fiill enterprize info.webp')">
                         <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                            <img src="img/fiill enterprize info.png" alt="معلومات المؤسسة" width="320" height="192"
+                            <img src="img/fiill enterprize info.webp" alt="معلومات المؤسسة" width="320" height="192"
                                 loading="lazy"
                                 class="w-full h-48 object-cover object-top transition-transform duration-500">
                         </div>
@@ -1137,284 +630,257 @@
         <span id="toast-message"></span>
     </div>
 
-    <script>
-        // UI Logic
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
+    <!-- Scripts moved to external files -->
 
-        // Mobile menu toggle with aria-expanded
-        mobileMenuButton.addEventListener('click', () => {
-            const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
-            mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
-            mobileMenu.classList.toggle('hidden');
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+
+    // Mobile menu toggle with aria-expanded
+    mobileMenuButton.addEventListener('click', () => {
+    const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+    mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+    mobileMenu.classList.toggle('hidden');
+    });
+
+    mobileMenu.querySelectorAll('button, a').forEach(l => l.addEventListener('click', () => {
+    mobileMenu.classList.add('hidden');
+    mobileMenuButton.setAttribute('aria-expanded', 'false');
+    }));
+
+    // ==========================================
+    // BACK TO TOP BUTTON
+    // ==========================================
+    const backToTopBtn = document.getElementById('backToTop');
+
+    // Show button after scrolling down
+    window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+    backToTopBtn.classList.add('show');
+    } else {
+    backToTopBtn.classList.remove('show');
+    }
+    });
+
+    // Smooth scroll to top
+    backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+    });
+    });
+
+    // ==========================================
+    // TOAST NOTIFICATION UTILITY
+    // ==========================================
+    function showToast(message, type = 'info') {
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toast-message');
+    const toastIcon = document.getElementById('toast-icon');
+
+    // Set message
+    toastMessage.textContent = message;
+
+    // Set icon and type
+    toast.className = 'toast show ' + type;
+    if (type === 'success') {
+    toastIcon.className = 'fas fa-check-circle';
+    } else if (type === 'error') {
+    toastIcon.className = 'fas fa-exclamation-circle';
+    } else {
+    toastIcon.className = 'fas fa-info-circle';
+    }
+
+    // Auto hide after 3 seconds
+    setTimeout(() => {
+    toast.classList.remove('show');
+    }, 3000);
+    }
+
+    // ==========================================
+    // SLIDER Logic (جديد)
+    // ==========================================
+    const screenshotsContainer = document.getElementById('screenshots-container');
+
+    function scrollScreenshots(direction) {
+    // تحديد مسافة التمرير بناءً على اتجاه RTL
+    // في اتجاه RTL، التمرير لليمين يكون بقيمة سالبة، واليسار بقيمة موجبة
+    const scrollAmount = 350; // مقدار التمرير بالبكسل
+
+    // بما أن الاتجاه هو RTL، فإن اليسار (Left) هو اتجاه الزيادة
+    // 1: لليسار (Next) -> زيادة الـ scrollLeft
+    // -1: لليمين (Previous) -> إنقاص الـ scrollLeft
+
+    // يتم استخدام القيمة السالبة لـ scrollLeft ليعمل بشكل صحيح في المتصفحات التي تدعم RTL
+    if (direction === 1) { // التمرير إلى اليسار (الصورة التالية)
+    screenshotsContainer.scrollLeft += scrollAmount;
+    } else if (direction === -1) { // التمرير إلى اليمين (الصورة السابقة)
+    screenshotsContainer.scrollLeft -= scrollAmount;
+    }
+    updateCarouselDots();
+    }
+
+    // ==========================================
+    // CAROUSEL AUTO-PLAY & DOTS
+    // ==========================================
+    let autoplayInterval = null;
+    let isAutoplayPaused = false;
+    const AUTOPLAY_DELAY = 4000; // 4 seconds
+
+    function startAutoplay() {
+    if (autoplayInterval) clearInterval(autoplayInterval);
+    autoplayInterval = setInterval(() => {
+    if (!isAutoplayPaused) {
+    // Check if at end, loop back to start (RTL uses negative scrollLeft)
+    const container = document.getElementById('screenshots-container');
+    const maxScroll = container.scrollWidth - container.clientWidth;
+    // In RTL, scrollLeft starts at 0 and goes negative
+    if (container.scrollLeft <= -(maxScroll - 50)) { container.scrollLeft=0; } else { scrollScreenshots(-1); // Use -1
+        for RTL (scroll left=next) } } }, AUTOPLAY_DELAY); } function pauseAutoplay() { isAutoplayPaused=true; const
+        btn=document.getElementById('autoplayBtn'); if (btn) btn.innerHTML='<i class="fas fa-play"></i>' ; } function
+        resumeAutoplay() { isAutoplayPaused=false; const btn=document.getElementById('autoplayBtn'); if (btn)
+        btn.innerHTML='<i class="fas fa-pause"></i>' ; } function toggleAutoplay() { if (isAutoplayPaused) {
+        resumeAutoplay(); } else { pauseAutoplay(); } } function updateCarouselDots() { const
+        container=document.getElementById('screenshots-container'); const
+        cards=container.querySelectorAll('.screenshot-card'); const dots=document.querySelectorAll('.carousel-dot');
+        const cardWidth=340; // card width + gap const currentIndex=Math.round(Math.abs(container.scrollLeft) /
+        cardWidth); dots.forEach((dot, index)=> {
+        if (index === currentIndex) {
+        dot.classList.add('active');
+        } else {
+        dot.classList.remove('active');
+        }
         });
-
-        mobileMenu.querySelectorAll('button, a').forEach(l => l.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
-            mobileMenuButton.setAttribute('aria-expanded', 'false');
-        }));
-
-        // ==========================================
-        // BACK TO TOP BUTTON
-        // ==========================================
-        const backToTopBtn = document.getElementById('backToTop');
-
-        // Show button after scrolling down
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTopBtn.classList.add('show');
-            } else {
-                backToTopBtn.classList.remove('show');
-            }
-        });
-
-        // Smooth scroll to top
-        backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // ==========================================
-        // TOAST NOTIFICATION UTILITY
-        // ==========================================
-        function showToast(message, type = 'info') {
-            const toast = document.getElementById('toast');
-            const toastMessage = document.getElementById('toast-message');
-            const toastIcon = document.getElementById('toast-icon');
-
-            // Set message
-            toastMessage.textContent = message;
-
-            // Set icon and type
-            toast.className = 'toast show ' + type;
-            if (type === 'success') {
-                toastIcon.className = 'fas fa-check-circle';
-            } else if (type === 'error') {
-                toastIcon.className = 'fas fa-exclamation-circle';
-            } else {
-                toastIcon.className = 'fas fa-info-circle';
-            }
-
-            // Auto hide after 3 seconds
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-        }
-
-        // ==========================================
-        // SLIDER Logic (جديد)
-        // ==========================================
-        const screenshotsContainer = document.getElementById('screenshots-container');
-
-        function scrollScreenshots(direction) {
-            // تحديد مسافة التمرير بناءً على اتجاه RTL
-            // في اتجاه RTL، التمرير لليمين يكون بقيمة سالبة، واليسار بقيمة موجبة
-            const scrollAmount = 350; // مقدار التمرير بالبكسل
-
-            // بما أن الاتجاه هو RTL، فإن اليسار (Left) هو اتجاه الزيادة
-            // 1: لليسار (Next) -> زيادة الـ scrollLeft
-            // -1: لليمين (Previous) -> إنقاص الـ scrollLeft
-
-            // يتم استخدام القيمة السالبة لـ scrollLeft ليعمل بشكل صحيح في المتصفحات التي تدعم RTL
-            if (direction === 1) { // التمرير إلى اليسار (الصورة التالية)
-                screenshotsContainer.scrollLeft += scrollAmount;
-            } else if (direction === -1) { // التمرير إلى اليمين (الصورة السابقة)
-                screenshotsContainer.scrollLeft -= scrollAmount;
-            }
-            updateCarouselDots();
-        }
-
-        // ==========================================
-        // CAROUSEL AUTO-PLAY & DOTS
-        // ==========================================
-        let autoplayInterval = null;
-        let isAutoplayPaused = false;
-        const AUTOPLAY_DELAY = 4000; // 4 seconds
-
-        function startAutoplay() {
-            if (autoplayInterval) clearInterval(autoplayInterval);
-            autoplayInterval = setInterval(() => {
-                if (!isAutoplayPaused) {
-                    // Check if at end, loop back to start (RTL uses negative scrollLeft)
-                    const container = document.getElementById('screenshots-container');
-                    const maxScroll = container.scrollWidth - container.clientWidth;
-                    // In RTL, scrollLeft starts at 0 and goes negative
-                    if (container.scrollLeft <= -(maxScroll - 50)) {
-                        container.scrollLeft = 0;
-                    } else {
-                        scrollScreenshots(-1); // Use -1 for RTL (scroll left = next)
-                    }
-                }
-            }, AUTOPLAY_DELAY);
-        }
-
-        function pauseAutoplay() {
-            isAutoplayPaused = true;
-            const btn = document.getElementById('autoplayBtn');
-            if (btn) btn.innerHTML = '<i class="fas fa-play"></i>';
-        }
-
-        function resumeAutoplay() {
-            isAutoplayPaused = false;
-            const btn = document.getElementById('autoplayBtn');
-            if (btn) btn.innerHTML = '<i class="fas fa-pause"></i>';
-        }
-
-        function toggleAutoplay() {
-            if (isAutoplayPaused) {
-                resumeAutoplay();
-            } else {
-                pauseAutoplay();
-            }
-        }
-
-        function updateCarouselDots() {
-            const container = document.getElementById('screenshots-container');
-            const cards = container.querySelectorAll('.screenshot-card');
-            const dots = document.querySelectorAll('.carousel-dot');
-            const cardWidth = 340; // card width + gap
-            const currentIndex = Math.round(Math.abs(container.scrollLeft) / cardWidth);
-
-            dots.forEach((dot, index) => {
-                if (index === currentIndex) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
-                }
-            });
         }
 
         function scrollToCard(index) {
-            const container = document.getElementById('screenshots-container');
-            const cardWidth = 340;
-            container.scrollLeft = -(index * cardWidth); // Negative for RTL
-            updateCarouselDots();
+        const container = document.getElementById('screenshots-container');
+        const cardWidth = 340;
+        container.scrollLeft = -(index * cardWidth); // Negative for RTL
+        updateCarouselDots();
         }
 
         function initCarouselDots() {
-            const container = document.getElementById('screenshots-container');
-            const cards = container.querySelectorAll('.screenshot-card');
-            const dotsContainer = document.getElementById('carousel-dots');
+        const container = document.getElementById('screenshots-container');
+        const cards = container.querySelectorAll('.screenshot-card');
+        const dotsContainer = document.getElementById('carousel-dots');
 
-            if (!dotsContainer) return;
+        if (!dotsContainer) return;
 
-            dotsContainer.innerHTML = '';
-            cards.forEach((_, index) => {
-                const dot = document.createElement('button');
-                dot.className = 'carousel-dot' + (index === 0 ? ' active' : '');
-                dot.onclick = () => scrollToCard(index);
-                dotsContainer.appendChild(dot);
-            });
+        dotsContainer.innerHTML = '';
+        cards.forEach((_, index) => {
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (index === 0 ? ' active' : '');
+        dot.onclick = () => scrollToCard(index);
+        dotsContainer.appendChild(dot);
+        });
 
-            // Listen for scroll to update dots
-            container.addEventListener('scroll', () => {
-                updateCarouselDots();
-            });
+        // Listen for scroll to update dots
+        container.addEventListener('scroll', () => {
+        updateCarouselDots();
+        });
 
-            // Start autoplay
-            startAutoplay();
+        // Start autoplay
+        startAutoplay();
 
-            // Initialize keyboard navigation
-            initKeyboardNavigation();
+        // Initialize keyboard navigation
+        initKeyboardNavigation();
         }
 
         // ==========================================
         // KEYBOARD NAVIGATION
         // ==========================================
         function initKeyboardNavigation() {
-            document.addEventListener('keydown', (e) => {
-                // Check if image modal is open
-                const imageModal = document.getElementById('imageModal');
-                const downloadModal = document.getElementById('downloadModal');
+        document.addEventListener('keydown', (e) => {
+        // Check if image modal is open
+        const imageModal = document.getElementById('imageModal');
+        const downloadModal = document.getElementById('downloadModal');
 
-                // Escape key - close modals
-                if (e.key === 'Escape') {
-                    if (imageModal && imageModal.style.display === 'flex') {
-                        imageModal.style.display = 'none';
-                        document.body.style.overflow = 'auto';
-                    }
-                    if (downloadModal && downloadModal.style.display === 'flex') {
-                        downloadModal.style.display = 'none';
-                        document.body.style.overflow = 'auto';
-                    }
-                    return;
-                }
-
-                // Arrow keys - check if image modal is open first
-                if (document.activeElement.tagName === 'INPUT' ||
-                    document.activeElement.tagName === 'TEXTAREA') {
-                    return;
-                }
-
-                // If image modal is open, navigate between images
-                if (imageModal && imageModal.style.display === 'flex') {
-                    if (e.key === 'ArrowLeft') {
-                        e.preventDefault();
-                        navigateImage(1); // Next image in RTL
-                    } else if (e.key === 'ArrowRight') {
-                        e.preventDefault();
-                        navigateImage(-1); // Previous image in RTL
-                    }
-                    return;
-                }
-
-                // Check if screenshots section is in view for carousel navigation
-                const screenshotsSection = document.getElementById('screenshots');
-                if (!screenshotsSection) return;
-
-                const rect = screenshotsSection.getBoundingClientRect();
-                const isInView = rect.top < window.innerHeight && rect.bottom > 0;
-
-                if (isInView) {
-                    if (e.key === 'ArrowLeft') {
-                        e.preventDefault();
-                        scrollScreenshots(-1); // Next slide (scroll left visually in RTL)
-                    } else if (e.key === 'ArrowRight') {
-                        e.preventDefault();
-                        scrollScreenshots(1); // Previous slide (scroll right visually in RTL)
-                    }
-                }
-            });
+        // Escape key - close modals
+        if (e.key === 'Escape') {
+        if (imageModal && imageModal.style.display === 'flex') {
+        imageModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        }
+        if (downloadModal && downloadModal.style.display === 'flex') {
+        downloadModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        }
+        return;
         }
 
-        // ==========================================
-        // DOWNLOAD MODAL Logic
-        // ==========================================
-        const downloadModal = document.getElementById("downloadModal");
-        const downloadCloseBtn = downloadModal.querySelector(".close-button");
+        // Arrow keys - check if image modal is open first
+        if (document.activeElement.tagName === 'INPUT' ||
+        document.activeElement.tagName === 'TEXTAREA') {
+        return;
+        }
 
-        function openDownloadModal() {
+        // If image modal is open, navigate between images
+        if (imageModal && imageModal.style.display === 'flex') {
+        if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        navigateImage(1); // Next image in RTL
+        } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        navigateImage(-1); // Previous image in RTL
+        }
+        return;
+        }
+
+        // Check if screenshots section is in view for carousel navigation
+        const screenshotsSection = document.getElementById('screenshots');
+        if (!screenshotsSection) return;
+
+        const rect = screenshotsSection.getBoundingClientRect();
+        const isInView = rect.top < window.innerHeight && rect.bottom> 0;
+
+            if (isInView) {
+            if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            scrollScreenshots(-1); // Next slide (scroll left visually in RTL)
+            } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            scrollScreenshots(1); // Previous slide (scroll right visually in RTL)
+            }
+            }
+            });
+            }
+
+            // ==========================================
+            // DOWNLOAD MODAL Logic
+            // ==========================================
+            const downloadModal = document.getElementById("downloadModal");
+            const downloadCloseBtn = downloadModal.querySelector(".close-button");
+
+            function openDownloadModal() {
             downloadModal.style.display = "flex";
             document.body.style.overflow = "hidden";
-        }
-        function closeDownloadModal() {
+            }
+            function closeDownloadModal() {
             downloadModal.style.display = "none";
             document.body.style.overflow = "auto";
-        }
-        downloadCloseBtn.onclick = closeDownloadModal;
+            }
+            downloadCloseBtn.onclick = closeDownloadModal;
 
-        // ==========================================
-        // IMAGE MODAL Logic with Navigation
-        // ==========================================
-        const imageModal = document.getElementById("imageModal");
-        const fullImage = document.getElementById("fullImage");
-        let currentImageIndex = 0;
-        let imageList = [];
+            // ==========================================
+            // IMAGE MODAL Logic with Navigation
+            // ==========================================
+            const imageModal = document.getElementById("imageModal");
+            const fullImage = document.getElementById("fullImage");
+            let currentImageIndex = 0;
+            let imageList = [];
 
-        // Get all screenshot images
-        function getImageList() {
+            // Get all screenshot images
+            function getImageList() {
             const cards = document.querySelectorAll('#screenshots-container .screenshot-card');
             return Array.from(cards).map(card => {
-                const onclick = card.getAttribute('onclick');
-                const match = onclick.match(/openImageModal\('([^']+)'\)/);
-                return match ? match[1] : null;
+            const onclick = card.getAttribute('onclick');
+            const match = onclick.match(/openImageModal\('([^']+)'\)/);
+            return match ? match[1] : null;
             }).filter(Boolean);
-        }
+            }
 
-        function openImageModal(imageSrc) {
+            function openImageModal(imageSrc) {
             imageList = getImageList();
             currentImageIndex = imageList.indexOf(imageSrc);
             if (currentImageIndex === -1) currentImageIndex = 0;
@@ -1422,43 +888,45 @@
             updateModalImage();
             imageModal.style.display = "flex";
             document.body.style.overflow = "hidden";
-        }
+            }
 
-        function updateModalImage() {
+            function updateModalImage() {
             fullImage.src = imageList[currentImageIndex];
             document.getElementById('currentImageIndex').textContent = currentImageIndex + 1;
             document.getElementById('totalImages').textContent = imageList.length;
-        }
+            }
 
-        function navigateImage(direction) {
+            function navigateImage(direction) {
             currentImageIndex += direction;
-            if (currentImageIndex < 0) currentImageIndex = imageList.length - 1;
-            if (currentImageIndex >= imageList.length) currentImageIndex = 0;
-            updateModalImage();
-        }
+            if (currentImageIndex < 0) currentImageIndex=imageList.length - 1; if (currentImageIndex>= imageList.length)
+                currentImageIndex = 0;
+                updateModalImage();
+                }
 
-        function closeImageModal(event) {
-            if (event.target === imageModal || event.target.className.includes('close-button')) {
+                function closeImageModal(event) {
+                if (event.target === imageModal || event.target.className.includes('close-button')) {
                 imageModal.style.display = "none";
                 document.body.style.overflow = "auto";
-            }
-        }
+                }
+                }
 
-        // ==========================================
-        // VERSION CONTROL SYSTEM (Mock Data) - Enhanced with Loading State
-        // ==========================================
-        async function checkVersion() {
-            const featuresList = document.getElementById('displayFeatures');
-            const versionsContainer = document.getElementById('versionsContainer');
+                // ==========================================
+                // VERSION CONTROL SYSTEM (Mock Data) - Enhanced with Loading State
+                // ==========================================
+                async function checkVersion() {
+                const featuresList = document.getElementById('displayFeatures');
+                const versionsContainer = document.getElementById('versionsContainer');
 
-            // Show loading state
-            featuresList.innerHTML = '<li class="flex items-center"><i class="fas fa-spinner fa-spin ml-2 text-blue-500"></i> جاري التحميل...</li>';
-            versionsContainer.innerHTML = '<div class="text-center text-gray-500 py-4"><i class="fas fa-spinner fa-spin ml-2"></i> جاري تحميل الإصدارات المتاحة...</div>';
+                // Show loading state
+                featuresList.innerHTML = '<li class="flex items-center"><i
+                        class="fas fa-spinner fa-spin ml-2 text-blue-500"></i> جاري التحميل...</li>';
+                versionsContainer.innerHTML = '<div class="text-center text-gray-500 py-4"><i
+                        class="fas fa-spinner fa-spin ml-2"></i> جاري تحميل الإصدارات المتاحة...</div>';
 
-            try {
+                try {
                 const response = await fetch('versions.json');
                 if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const data = await response.json();
                 const releases = data.releases;
@@ -1468,86 +936,98 @@
                 const latest = releases[0];
                 document.getElementById('displayVersion').textContent = 'v' + latest.version;
                 document.getElementById('displayDate').textContent = 'تاريخ النشر: ' + latest.releaseDate;
-                document.getElementById('heroVersionBadge').textContent = 'الإصدار الأخير v' + latest.version + ' متاح الآن';
+                document.getElementById('heroVersionBadge').textContent = 'الإصدار الأخير v' + latest.version + ' متاح
+                الآن';
 
                 featuresList.innerHTML = '';
                 latest.features.forEach(feature => {
-                    const li = document.createElement('li');
-                    li addClass = 'flex items-center';
-                    li.innerHTML = `<i class="fas fa-check-circle text-green-500 ml-3"></i> ${feature}`;
-                    featuresList.appendChild(li);
+                const li = document.createElement('li');
+                li.className = 'flex items-center';
+                li.innerHTML = `<i class="fas fa-check-circle text-green-500 ml-3"></i> ${feature}`;
+                featuresList.appendChild(li);
                 });
 
                 versionsContainer.innerHTML = '';
 
                 releases.forEach(release => {
-                    const isLatest = (release.version === latest.version);
-                    const releaseBadge = isLatest ? '<span class="bg-green-500 text-white text-xs font-semibold px-2 py-0.5 rounded-full mr-2">الأحدث</span>' : '';
+                const isLatest = (release.version === latest.version);
+                const releaseBadge = isLatest ? '<span
+                    class="bg-green-500 text-white text-xs font-semibold px-2 py-0.5 rounded-full mr-2">الأحدث</span>' :
+                '';
 
-                    const html = `
-                        <div class="download-option-card flex flex-col space-y-3">
-                            <div class="flex justify-between items-center pb-2 border-b border-gray-300">
-                                <h5 class="text-xl font-bold text-gray-800">
-                                    الإصدار ${release.version} ${releaseBadge}
-                                </h5>
-                                <p class="text-sm text-gray-500">تاريخ: ${release.releaseDate}</p>
-                            </div>
-                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-3">
-                                <a href="${release.downloadUrlWindows}" target="_blank" class="text-center py-2 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors text-sm">
-                                    <i class="fab fa-windows ml-2"></i> تحميل لـ Windows
-                                </a>
-                                <a href="${release.downloadUrlLinux}" target="_blank" class="text-center py-2 rounded-lg bg-yellow-600 text-white font-semibold hover:bg-yellow-700 transition-colors text-sm">
-                                    <i class="fab fa-linux ml-2"></i> تحميل لـ Linux
-                                </a>
-                                <a href="${release.downloadUrlMac}" target="_blank" class="text-center py-2 rounded-lg bg-gray-700 text-white font-semibold hover:bg-gray-800 transition-colors text-sm">
-                                    <i class="fab fa-apple ml-2"></i> تحميل لـ macOS
-                                </a>
-                            </div>
-                        </div>
-                    `;
-                    versionsContainer.insertAdjacentHTML('beforeend', html);
+                const html = `
+                <div class="download-option-card flex flex-col space-y-3">
+                    <div class="flex justify-between items-center pb-2 border-b border-gray-300">
+                        <h5 class="text-xl font-bold text-gray-800">
+                            الإصدار ${release.version} ${releaseBadge}
+                        </h5>
+                        <p class="text-sm text-gray-500">تاريخ: ${release.releaseDate}</p>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-3">
+                        <a href="${release.downloadUrlWindows}" target="_blank"
+                            class="text-center py-2 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors text-sm">
+                            <i class="fab fa-windows ml-2"></i> تحميل لـ Windows
+                        </a>
+                        <a href="${release.downloadUrlLinux}" target="_blank"
+                            class="text-center py-2 rounded-lg bg-yellow-600 text-white font-semibold hover:bg-yellow-700 transition-colors text-sm">
+                            <i class="fab fa-linux ml-2"></i> تحميل لـ Linux
+                        </a>
+                        <a href="${release.downloadUrlMac}" target="_blank"
+                            class="text-center py-2 rounded-lg bg-gray-700 text-white font-semibold hover:bg-gray-800 transition-colors text-sm">
+                            <i class="fab fa-apple ml-2"></i> تحميل لـ macOS
+                        </a>
+                    </div>
+                </div>
+                `;
+                versionsContainer.insertAdjacentHTML('beforeend', html);
                 });
 
                 // Show success toast
                 showToast('تم تحميل الإصدارات بنجاح', 'success');
 
-            } catch (error) {
+                } catch (error) {
                 console.error("Error loading versions:", error);
-                featuresList.innerHTML = '<li class="text-red-500"><i class="fas fa-exclamation-triangle ml-2"></i> لا يوجد اتصال بالخادم حالياً</li>';
+                featuresList.innerHTML = '<li class="text-red-500"><i class="fas fa-exclamation-triangle ml-2"></i> لا
+                    يوجد اتصال بالخادم حالياً</li>';
                 document.getElementById('displayVersion').textContent = 'v1.0.0 (افتراضي)';
-                versionsContainer.innerHTML = '<div class="text-center text-red-500 py-4"><i class="fas fa-exclamation-triangle ml-2"></i> فشل تحميل قائمة الإصدارات</div>';
+                versionsContainer.innerHTML = '<div class="text-center text-red-500 py-4"><i
+                        class="fas fa-exclamation-triangle ml-2"></i> فشل تحميل قائمة الإصدارات</div>';
 
                 // Show error toast
                 showToast('فشل في تحميل بيانات الإصدارات', 'error');
-            }
-        }
+                }
+                }
 
-        // ==========================================
-        // SCROLL REVEAL Animation
-        // ==========================================
-        function initScrollReveal() {
-            const revealElements = document.querySelectorAll('.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right');
+                // ==========================================
+                // SCROLL REVEAL Animation
+                // ==========================================
+                function initScrollReveal() {
+                const revealElements = document.querySelectorAll('.scroll-reveal, .scroll-reveal-left,
+                .scroll-reveal-right');
 
-            const observer = new IntersectionObserver((entries) => {
+                const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('revealed');
-                    }
+                if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                }
                 });
-            }, {
+                }, {
                 threshold: 0.1,
                 rootMargin: '0px 0px -50px 0px'
-            });
+                });
 
-            revealElements.forEach(el => observer.observe(el));
-        }
+                revealElements.forEach(el => observer.observe(el));
+                }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            checkVersion();
-            initScrollReveal();
-            initCarouselDots();
-        });
-    </script>
+                document.addEventListener('DOMContentLoaded', () => {
+                checkVersion();
+                initScrollReveal();
+                initCarouselDots();
+                });
+                </script>
+
+                <!-- Main JavaScript -->
+                <script src="js/main.js"></script>
 </body>
 
 </html>

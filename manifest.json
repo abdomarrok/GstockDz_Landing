@@ -12,24 +12,27 @@
   "scope": "./",
   "icons": [
     {
-      "src": "img/dashboard.png",
+      "src": "img/dashboard.webp",
       "sizes": "512x512",
-      "type": "image/png",
+      "type": "image/webp",
       "purpose": "any maskable"
     }
   ],
-  "categories": ["business", "productivity"],
+  "categories": [
+    "business",
+    "productivity"
+  ],
   "screenshots": [
     {
-      "src": "img/dashboard.png",
+      "src": "img/dashboard.webp",
       "sizes": "900x600",
-      "type": "image/png",
+      "type": "image/webp",
       "label": "لوحة التحكم الرئيسية"
     },
     {
-      "src": "img/orders_list.png",
+      "src": "img/orders_list.webp",
       "sizes": "320x192",
-      "type": "image/png",
+      "type": "image/webp",
       "label": "قسم المشتريات"
     }
   ]
