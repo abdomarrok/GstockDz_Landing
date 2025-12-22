@@ -446,6 +446,116 @@
             background: #94a3b8;
         }
 
+        /* Skeleton Loader for Screenshots */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s ease-in-out infinite;
+        }
+
+        @keyframes skeleton-loading {
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        .skeleton-card {
+            width: 320px;
+            flex-shrink: 0;
+        }
+
+        /* Button Ripple Effect */
+        .btn-ripple {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-ripple::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-ripple:active::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: white;
+            padding: 16px 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateX(400px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .toast.success {
+            border-left: 4px solid #10b981;
+        }
+
+        .toast.error {
+            border-left: 4px solid #ef4444;
+        }
+
+        .toast.info {
+            border-left: 4px solid #3b82f6;
+        }
+
+        /* Enhanced Stagger Animation for Feature Cards */
+        .scroll-reveal:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+
+        .scroll-reveal:nth-child(2) {
+            transition-delay: 0.2s;
+        }
+
+        .scroll-reveal:nth-child(3) {
+            transition-delay: 0.3s;
+        }
+
+        .scroll-reveal:nth-child(4) {
+            transition-delay: 0.4s;
+        }
+
+        .scroll-reveal:nth-child(5) {
+            transition-delay: 0.5s;
+        }
+
+        .scroll-reveal:nth-child(6) {
+            transition-delay: 0.6s;
+        }
+
+        .scroll-reveal:nth-child(7) {
+            transition-delay: 0.7s;
+        }
+
         /* Back to Top Button */
         #backToTop {
             position: fixed;
@@ -550,11 +660,11 @@
             </div>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
                 <button onclick="openDownloadModal()"
-                    class="bg-white text-blue-700 font-bold py-4 px-8 rounded-full text-lg shadow-lg hover:bg-gray-50 transform hover:scale-105 transition-all">
+                    class="btn-ripple bg-white text-blue-700 font-bold py-4 px-8 rounded-full text-lg shadow-lg hover:bg-gray-50 transform hover:scale-105 transition-all">
                     <i class="fas fa-download ml-2"></i> تحميل مجاني
                 </button>
                 <a href="#features"
-                    class="border-2 border-white/50 text-white font-bold py-4 px-8 rounded-full text-lg hover:bg-white/10 transition-all">
+                    class="btn-ripple border-2 border-white/50 text-white font-bold py-4 px-8 rounded-full text-lg hover:bg-white/10 transition-all">
                     <i class="fas fa-info-circle ml-2"></i> اكتشف المزيد
                 </a>
             </div>
@@ -1021,6 +1131,12 @@
         <div class="image-counter"><span id="currentImageIndex">1</span> / <span id="totalImages">10</span></div>
     </div>
 
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <i id="toast-icon" class="fas"></i>
+        <span id="toast-message"></span>
+    </div>
+
     <script>
         // UI Logic
         document.getElementById('currentYear').textContent = new Date().getFullYear();
@@ -1060,6 +1176,33 @@
                 behavior: 'smooth'
             });
         });
+
+        // ==========================================
+        // TOAST NOTIFICATION UTILITY
+        // ==========================================
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            const toastIcon = document.getElementById('toast-icon');
+
+            // Set message
+            toastMessage.textContent = message;
+
+            // Set icon and type
+            toast.className = 'toast show ' + type;
+            if (type === 'success') {
+                toastIcon.className = 'fas fa-check-circle';
+            } else if (type === 'error') {
+                toastIcon.className = 'fas fa-exclamation-circle';
+            } else {
+                toastIcon.className = 'fas fa-info-circle';
+            }
+
+            // Auto hide after 3 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
 
         // ==========================================
         // SLIDER Logic (جديد)
@@ -1302,9 +1445,16 @@
         }
 
         // ==========================================
-        // VERSION CONTROL SYSTEM (Mock Data)
+        // VERSION CONTROL SYSTEM (Mock Data) - Enhanced with Loading State
         // ==========================================
         async function checkVersion() {
+            const featuresList = document.getElementById('displayFeatures');
+            const versionsContainer = document.getElementById('versionsContainer');
+
+            // Show loading state
+            featuresList.innerHTML = '<li class="flex items-center"><i class="fas fa-spinner fa-spin ml-2 text-blue-500"></i> جاري التحميل...</li>';
+            versionsContainer.innerHTML = '<div class="text-center text-gray-500 py-4"><i class="fas fa-spinner fa-spin ml-2"></i> جاري تحميل الإصدارات المتاحة...</div>';
+
             try {
                 const response = await fetch('versions.json');
                 if (!response.ok) {
@@ -1320,16 +1470,14 @@
                 document.getElementById('displayDate').textContent = 'تاريخ النشر: ' + latest.releaseDate;
                 document.getElementById('heroVersionBadge').textContent = 'الإصدار الأخير v' + latest.version + ' متاح الآن';
 
-                const featuresList = document.getElementById('displayFeatures');
                 featuresList.innerHTML = '';
                 latest.features.forEach(feature => {
                     const li = document.createElement('li');
-                    li.className = 'flex items-center';
+                    li addClass = 'flex items-center';
                     li.innerHTML = `<i class="fas fa-check-circle text-green-500 ml-3"></i> ${feature}`;
                     featuresList.appendChild(li);
                 });
 
-                const versionsContainer = document.getElementById('versionsContainer');
                 versionsContainer.innerHTML = '';
 
                 releases.forEach(release => {
@@ -1360,11 +1508,17 @@
                     versionsContainer.insertAdjacentHTML('beforeend', html);
                 });
 
+                // Show success toast
+                showToast('تم تحميل الإصدارات بنجاح', 'success');
+
             } catch (error) {
                 console.error("Error loading versions:", error);
-                document.getElementById('displayFeatures').innerHTML = '<li class="text-red-500">لا يوجد اتصال بالخادم حالياً. الروابط قد تكون قديمة.</li>';
+                featuresList.innerHTML = '<li class="text-red-500"><i class="fas fa-exclamation-triangle ml-2"></i> لا يوجد اتصال بالخادم حالياً</li>';
                 document.getElementById('displayVersion').textContent = 'v1.0.0 (افتراضي)';
-                document.getElementById('versionsContainer').innerHTML = '<div class="text-center text-red-500 py-4"><i class="fas fa-exclamation-triangle ml-2"></i> فشل تحميل قائمة الإصدارات.</div>';
+                versionsContainer.innerHTML = '<div class="text-center text-red-500 py-4"><i class="fas fa-exclamation-triangle ml-2"></i> فشل تحميل قائمة الإصدارات</div>';
+
+                // Show error toast
+                showToast('فشل في تحميل بيانات الإصدارات', 'error');
             }
         }
 
