@@ -8,7 +8,7 @@
 const EMAILJS_CONFIG = {
     PUBLIC_KEY: 'tSSVhRceq1cjEuYwS',  // ✅ EmailJS public key
     SERVICE_ID: 'service_b9lhkfm',        // ✅ Gmail service ID
-    TEMPLATE_ID: 'template_6cyafwl'       // ✅ Contact Us template
+    TEMPLATE_ID: 'template_6ryafwl'       // ✅ Contact Us template
 };
 
 // Initialize EmailJS when page loads
